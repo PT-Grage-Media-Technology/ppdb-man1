@@ -19,25 +19,25 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">Kode Pendaftaran</label>
-                                <input class="form-control" type="text" name="kode_pendaftaran" value="lucky.jesse">
+                                <input class="form-control" type="text" name="kode_pendaftaran" >
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">Kelas/Program</label>
-                                <input class="form-control" type="text" name="kelas_program" value="Umum">
+                                <input class="form-control" type="text" name="kelas_program" >
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">Nama Sekolah Asal</label>
-                                <input class="form-control" type="text" name="nama_sekolah_asal" value="Jesse">
+                                <input class="form-control" type="text" name="nama_sekolah_asal">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">NPSN Sekolah Asal</label>
-                                <input class="form-control" type="number" name="npsn_sekolah_asal" value="Lucky">
+                                <input class="form-control" type="number" name="npsn_sekolah_asal" >
                             </div>
                         </div>
                     </div>
@@ -48,14 +48,14 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">Nama Lengkap</label>
-                                <input class="form-control" type="text" name="nama_lengkap" value="New York">
+                                <input class="form-control" type="text" name="nama_lengkap" >
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">Jenis Kelamin</label>
                                 <select class="form-select" name="jenis_kelamin" aria-label="Default select example">
-                                    <option selected>Pilih Jenis Kelamin</option>
+                                    <option value="" selected>Pilih Jenis Kelamin</option>
                                     <option value="Laki-laki">Laki-laki</option>
                                     <option value="Perempuan">Perempuan</option>
                                 </select>
@@ -64,25 +64,25 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">NIK</label>
-                                <input class="form-control" type="text" name="nik" value="437300">
+                                <input class="form-control" type="text" name="nik" >
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">NISN</label>
-                                <input class="form-control" type="text" name="nisn" value="437300">
+                                <input class="form-control" type="text" name="nisn" >
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">Tempat Lahir</label>
-                                <input class="form-control" type="text" name="tempat_lahir" value="437300">
+                                <input class="form-control" type="text" name="tempat_lahir" >
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">Tanggal Lahir</label>
-                                <input class="form-control" type="date" name="tanggal_lahir" value="437300">
+                                <input class="form-control" type="date" name="tanggal_lahir" >
                             </div>
                         </div>
                     </div>
@@ -93,45 +93,45 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">Alamat Jalan</label>
-                                <input class="form-control" type="text" name="alamat_jalan" value="New York">
+                                <input class="form-control" type="text" name="alamat_jalan" >
                             </div>
                         </div>
 
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">RT/RW</label>
-                                <input class="form-control" type="text" name="rt" value="New York">
+                                <input class="form-control" type="text" name="rt" >
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">Desa/Kelurahan</label>
-                                <input class="form-control" type="text" name="desa" value="New York">
+                                <input class="form-control" type="text" name="desa" >
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">Kecamatan</label>
-                                <input class="form-control" type="text" name="kecamatan" value="New York">
+                                <input class="form-control" type="text" name="kecamatan" >
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">Kabupaten</label>
-                                <input class="form-control" type="text" name="kabupaten" value="New York">
+                                <input class="form-control" type="text" name="kabupaten" >
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">Provinsi</label>
-                                <input class="form-control" type="text" name="provinsi" value="New York">
+                                <input class="form-control" type="text" name="provinsi" >
                             </div>
                         </div>
 
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">Provinsi</label>
-                                <input class="form-control" type="text" name="provinsi" value="New York">
+                                <input class="form-control" type="text" name="provinsi" >
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -149,7 +149,7 @@
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">Status Ayah</label>
                                 <select class="form-select" name="status_ayah" aria-label="Default select example">
-                                    <option selected>Pilih Status</option>
+                                    <option value="" selected>Pilih Status</option>
                                     <option value="Hidup">Hidup</option>
                                     <option value="Meninggal">Meninggal</option>
                                 </select>
@@ -159,26 +159,26 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">NIK Ayah</label>
-                                <input class="form-control" type="number" name="nik_ayah" value="New York">
+                                <input class="form-control" type="number" name="nik_ayah" >
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">Nama Ayah</label>
-                                <input class="form-control" type="text" name="nama_ayah" value="New York">
+                                <input class="form-control" type="text" name="nama_ayah" >
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">Tanggal Lahir Ayah</label>
-                                <input class="form-control" type="date" name="tanggal_lahir_ayah" value="New York">
+                                <input class="form-control" type="date" name="tanggal_lahir_ayah" >
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">Pekerjaan Ayah</label>
                                 <select class="form-select" name="pekerjaan_ayah" aria-label="Default select example">
-                                    <option selected>Pilih Pekerjaan</option>
+                                    <option value="" selected>Pilih Pekerjaan</option>
                                     <option value="PNS">PNS</option>
                                     <option value="TNI">TNI</option>
                                     <option value="Polri">Polri</option>
@@ -193,7 +193,7 @@
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">Pendidikan Ayah</label>
                                 <select class="form-select" name="pendidikan_ayah" aria-label="Default select example">
-                                    <option selected>Pilih Pendidikan</option>
+                                    <option value="" selected>Pilih Pendidikan</option>
                                     <option value="SD/Sederajat">SD/Sederajat</option>
                                     <option value="SMP/Sederajat">SMP/Sederajat</option>
                                     <option value="SMA/Sederajat">SMA/Sederajat</option>
@@ -213,7 +213,7 @@
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">Penghasilan Ayah</label>
                                 <select class="form-select" name="penghasilan_ayah" aria-label="Default select example">
-                                    <option selected>Pilih Penghasilan</option>
+                                    <option value="" selected>Pilih Penghasilan</option>
                                     <option value="1.000.000-2.000.000">1.000.000-2.000.000</option>
                                     <option value="2.000.000-3.000.000">2.000.000-3.000.000</option>
                                     <option value=">3.000.000">>3.000.000</option>
@@ -224,7 +224,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">No Hp Ayah</label>
-                                <input class="form-control" type="number" name="no_hp_ayah" value="New York">
+                                <input class="form-control" type="number" name="no_hp_ayah" >
                             </div>
                         </div>
 
@@ -239,7 +239,7 @@
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">Status Ibu</label>
                                 <select class="form-select" name="status_ibu" aria-label="Default select example">
-                                    <option selected>Pilih Status</option>
+                                    <option value="" selected>Pilih Status</option>
                                     <option value="Hidup">Hidup</option>
                                     <option value="Meninggal">Meninggal</option>
                                 </select>
@@ -249,26 +249,26 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">NIK Ibu</label>
-                                <input class="form-control" type="number" name="nik_ibu" value="New York">
+                                <input class="form-control" type="number" name="nik_ibu" >
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">Nama Ibu</label>
-                                <input class="form-control" type="text" name="nama_ibu" value="New York">
+                                <input class="form-control" type="text" name="nama_ibu" >
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">Tanggal Lahir Ibu</label>
-                                <input class="form-control" type="date" name="tanggal_lahir_ibu" value="New York">
+                                <input class="form-control" type="date" name="tanggal_lahir_ibu" >
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">Pekerjaan Ibu</label>
                                 <select class="form-select" name="pekerjaan_ibu" aria-label="Default select example">
-                                    <option selected>Pilih Pekerjaan</option>
+                                    <option value="" selected>Pilih Pekerjaan</option>
                                     <option value="PNS">PNS</option>
                                     <option value="TNI">TNI</option>
                                     <option value="Polri">Polri</option>
@@ -283,7 +283,7 @@
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">Pendidikan Ibu</label>
                                 <select class="form-select" name="pendidikan_ibu" aria-label="Default select example">
-                                    <option selected>Pilih Pendidikan</option>
+                                    <option value="" selected>Pilih Pendidikan</option>
                                     <option value="SD/Sederajat">SD/Sederajat</option>
                                     <option value="SMP/Sederajat">SMP/Sederajat</option>
                                     <option value="SMA/Sederajat">SMA/Sederajat</option>
@@ -303,7 +303,7 @@
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">Penghasilan Ibu</label>
                                 <select class="form-select" name="penghasilan_ibu" aria-label="Default select example">
-                                    <option selected>Pilih Penghasilan</option>
+                                    <option value="" selected>Pilih Penghasilan</option>
                                     <option value="1.000.000-2.000.000">1.000.000-2.000.000</option>
                                     <option value="2.000.000-3.000.000">2.000.000-3.000.000</option>
                                     <option value=">3.000.000">>3.000.000</option>
@@ -314,7 +314,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">No Hp Ibu</label>
-                                <input class="form-control" type="number" name="no_hp_ibu" value="New York">
+                                <input class="form-control" type="number" name="no_hp_ibu" >
                             </div>
                         </div>
 
