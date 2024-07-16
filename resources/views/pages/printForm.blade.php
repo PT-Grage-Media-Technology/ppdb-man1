@@ -117,15 +117,46 @@
                 </div>
             </div>
 
+            <div class="d-flex justify-content-around mt-4">
+                <div>
+                    <canvas id="qr-code"></canvas>
+                </div>
+                <div>
+                    <img src="{{ asset('foto_siswa/' . $formulir->foto) }}" alt="Foto" width="100" height="100">
+                </div>
+                <div>
+
+                    @php
+                        setlocale(LC_TIME, 'id_ID'); // Set the locale to Indonesian (adjust as per your locale)
+                        $currentDate = date('Y-m-d');
+                        $formattedDate = strftime('%d %B %Y', strtotime($currentDate));
+                    @endphp
+
+
+                    <div>Weru, {{ $formattedDate }}</div>
+                    <div>Pendaftar</div>
+                    <br><br>
+                    <div><strong>{{ $formulir->nama_lengkap }}</strong></div>
+                </div>
+            </div>
+
         </div>
-        <footer>
-            <p>Cetak pada: {{ \Carbon\Carbon::now()->toDateTimeString() }}</p>
-        </footer>
     </div>
     <script>
         window.onload = function() {
+            // Generate QR code
+            var qr = new QRious({
+                element: document.getElementById('qr-code'),
+                value: '{{ $formulir->nisn . '-' . $formulir->nama_lengkap }}' ,
+                size: 100
+            });
+
             window.print();
         };
     </script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+
 </body>
 </html>
