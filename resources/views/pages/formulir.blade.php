@@ -11,10 +11,13 @@
                         {{-- <p class="mb-0 ms-3">Kelengkapan: {{ $completionPercentage }}%</p> --}}
 
                         @if ($completionPercentage == 100)
-                            <a href="#" class="btn btn-success btn-sm ms-auto"><i class="fa fa-print"></i> Cetak Formulir</a>
+                            {{-- <a href="#" class="btn btn-success btn-sm ms-auto"><i class="fa fa-print"></i> Cetak Formulir</a> --}}
+                            <button onclick="openPrintPage()">Cetak Formulir</button>
+
                         @else
                             <button class="btn btn-secondary btn-sm ms-auto" disabled><i class="fa fa-print"></i> Cetak
                                 Formulir</button>
+
 
                         @endif
 
@@ -373,4 +376,17 @@
         </div>
 
     </div>
+
+    <script>
+    function openPrintPage() {
+        // Anda bisa menambahkan logika untuk mendapatkan data yang diperlukan jika belum ada
+        // Misalnya, menggunakan Ajax untuk mendapatkan data dari server
+        // Lalu mengarahkan ke halaman cetak dengan data tersebut
+
+        var url = '/print-form?kode_pendaftaran={{ $formulir->kode_pendaftaran }}';
+        window.open(url, '_blank');
+    }
+    </script>
+
+
 @endsection

@@ -28,3 +28,5 @@ Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('
 // formulir pendaftaran
 Route::get('formulir-pendaftaran', [FormulirController::class, 'index'])->name('formulir-pendaftaran')->middleware('auth');
 Route::post('formulir-pendaftaran-post', [FormulirController::class, 'store'])->name('formulir-pendaftaran-post')->middleware('auth');
+
+Route::get('/print-form', [FormulirController::class, 'printForm'])->name('print.form');
