@@ -11,20 +11,21 @@
                         {{-- <p class="mb-0 ms-3">Kelengkapan: {{ $completionPercentage }}%</p> --}}
 
                         @if ($completionPercentage == 100)
-                            <a href="#" class="btn btn-success btn-sm ms-auto"><i class="fa fa-print"></i> Cetak Formulir</a>
+                            <a href="#" class="btn btn-success btn-sm ms-auto"><i class="fa fa-print"></i> Cetak
+                                Formulir</a>
                         @else
                             <button class="btn btn-secondary btn-sm ms-auto" disabled><i class="fa fa-print"></i> Cetak
                                 Formulir</button>
-
                         @endif
 
                     </div>
                 </div>
                 <div class="container text-center">
-                <span class="badge badge-sm bg-gradient-danger text-center">Kelengkapan Data : {{ $completionPercentage }}%</span>
-                 </div>
+                    <span class="badge badge-sm bg-gradient-danger text-center">Kelengkapan Data :
+                        {{ $completionPercentage }}%</span>
+                </div>
                 <div class="card-body">
-                    <form action="{{ route('formulir-pendaftaran-post') }}" method="post">
+                    <form action="{{ route('formulir-pendaftaran-post') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
                         <p class="text-uppercase text-sm">Registrasi Peserta Didik</p>
@@ -33,7 +34,7 @@
                                 <div class="form-group">
                                     <label for="example-text-input" class="form-control-label">Kode Pendaftaran</label>
                                     <input class="form-control" type="text" name="kode_pendaftaran"
-                                        value="{{ $formulir->kode_pendaftaran }}">
+                                        value="{{ $formulir->kode_pendaftaran }}" disabled>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -108,6 +109,19 @@
                                 </div>
                             </div>
                         </div>
+                        {{-- preview foto --}}
+                        <img alt="belum ada foto!" class="mb-3" id="currentImage"
+                            style="width: 80px; height: 100px; border-radius: 10px; object-fit: cover; margin-left: 100px;"
+                            src="{{ asset('foto_siswa/' . $formulir->foto) }}">
+                            {{-- priview real time --}}
+                            <img id="newImage" src="#" alt="Preview" style="display: none; width: 100px; height: 150px; border-radius: 10px; object-fit: cover; margin-left: 100px; ">
+                        <div class="col-md-4">
+
+                            <label for="example-text-input" class="form-control-label">Foto 3x4 Merah</label>
+                            <input class="form-control" type="file" id="foto" name="foto"
+                                onchange="previewImage(this)">
+                        </div>
+
                         <hr class="horizontal dark">
                         <p class="text-uppercase text-sm">Alamat Peserta Didik</p>
                         <div class="row">
@@ -373,4 +387,29 @@
         </div>
 
     </div>
+    {{-- js upload foto --}}
+    <script>
+        function previewImage(input) {
+            var currentImage = document.getElementById('currentImage');
+            var newImage = document.getElementById('newImage');
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    newImage.style.display = 'block';
+                    newImage.src = e.target.result;
+                    newImage.style.width = '70px';
+                    newImage.style.height = '70px';
+                    currentImage.style.display = 'none';
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                newImage.style.display = 'none';
+                newImage.src = '#';
+                currentImage.style.display = 'block';
+            }
+        }
+    </script>
 @endsection
