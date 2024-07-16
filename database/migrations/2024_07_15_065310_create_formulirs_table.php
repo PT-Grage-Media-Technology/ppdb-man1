@@ -27,6 +27,7 @@ return new class extends Migration
             $table->bigInteger('nisn')->nullable();
             $table->string('tempat_lahir')->nullable();
             $table->date('tanggal_lahir')->nullable();
+            $table->string('foto')->nullable();
             // alamat peserta didik
             $table->string('alamat_jalan')->nullable();
             $table->string('rt')->nullable();

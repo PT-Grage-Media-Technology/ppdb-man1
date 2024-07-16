@@ -11,7 +11,6 @@ class FormulirController extends Controller
 {
     public function index()
     {
-
     // Ambil pengguna yang sedang login
     $user = Auth::user();
 
@@ -26,7 +25,6 @@ class FormulirController extends Controller
     public function store(Request $request)
     {
 
-
         // Ambil user_id dari request
         $user_id = $request->input('user_id');
 
@@ -34,15 +32,37 @@ class FormulirController extends Controller
         $formulir = Formulir::where('user_id', $user_id)->first();
 
         if ($formulir) {
-            // Perbarui data formulir
-            $formulir->update($request->except('user_id'));
+            // Jika ada file foto dalam request
+            if ($request->hasFile('foto')) {
+                // Hapus foto lama jika ada
+                if ($formulir->foto && file_exists(public_path('foto_siswa/' . $formulir->foto))) {
+                    unlink(public_path('foto_siswa/' . $formulir->foto));
+                }
+
+                // Upload foto baru
+                $file = $request->file('foto');
+                $filename = time() . '_' . $file->getClientOriginalName();
+                $file->move(public_path('foto_siswa'), $filename);
+
+                // Set nama file foto baru ke dalam request
+                $formulir->foto = $filename;
+            }
+
+            // Perbarui data formulir kecuali user_id
+            $formulir->update($request->except('user_id', 'foto'));
+
+            // Perbarui kolom foto jika ada
+            if ($request->hasFile('foto')) {
+                $formulir->foto = $filename;
+                $formulir->save();
+            }
 
             return redirect()->back()->with('success', 'Data Berhasil Di Simpan');
         } else {
             return redirect()->back()->with('error', 'Formulir tidak ditemukan');
         }
     }
-
+    
     public function printForm(Request $request)
     {
         // Dapatkan data yang diperlukan dari request atau dari database
