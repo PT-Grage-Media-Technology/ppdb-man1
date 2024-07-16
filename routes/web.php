@@ -26,5 +26,5 @@ Route::get('password/reset/{token}', [ResetPasswordController::class, 'showReset
 Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
 
 // formulir pendaftaran
-Route::get('formulir-pendaftaran', [FormulirController::class, 'index'])->name('formulir-pendaftaran');
-Route::post('formulir-pendaftaran-post', [FormulirController::class, 'store'])->name('formulir-pendaftaran-post');
+Route::get('formulir-pendaftaran', [FormulirController::class, 'index'])->name('formulir-pendaftaran')->middleware('auth');
+Route::post('formulir-pendaftaran-post', [FormulirController::class, 'store'])->name('formulir-pendaftaran-post')->middleware('auth');

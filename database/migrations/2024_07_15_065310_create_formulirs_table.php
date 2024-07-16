@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('formulirs', function (Blueprint $table) {
             $table->id();
+            // relasi dengan user
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             // registrasi peserta didik
             $table->string('kode_pendaftaran')->nullable();
             $table->string('kelas_program')->nullable();
@@ -40,7 +42,7 @@ return new class extends Migration
             $table->date('tanggal_lahir_ayah')->nullable();
             $table->enum('pekerjaan_ayah', ['PNS', 'TNI', 'Polri', 'Wiraswasta', 'Buruh(Tani/Pabrik/Bangunan)','Lainnya'])->nullable();
             $table->enum('pendidikan_ayah', ['SD/Sederajat', 'SMP/Sederajat', 'SMA/Sederajat', 'D1', 'D2', 'D3', 'D4', 'S1', 'S2', 'S3','Lainnya'])->nullable();
-            $table->enum('penghasil_ayah',['1.000.000-2.000.000','2.000.000-3.000.000','>3.000.000','Lainnya'])->nullable();
+            $table->enum('penghasilan_ayah',['1.000.000-2.000.000','2.000.000-3.000.000','>3.000.000','Lainnya'])->nullable();
             $table->bigInteger('no_hp_ayah')->nullable();
             // data orangtua ibu
             $table->enum('status_ibu', ['Hidup', 'Meninggal'])->nullable();
@@ -49,7 +51,7 @@ return new class extends Migration
             $table->date('tanggal_lahir_ibu')->nullable();
             $table->enum('pekerjaan_ibu', ['PNS', 'TNI', 'Polri', 'Wiraswasta', 'Buruh(Tani/Pabrik/Bangunan)','Lainnya'])->nullable();
             $table->enum('pendidikan_ibu', ['SD/Sederajat', 'SMP/Sederajat', 'SMA/Sederajat', 'D1', 'D2', 'D3', 'D4', 'S1', 'S2', 'S3','Lainnya'])->nullable();
-            $table->enum('penghasil_ibu',['1.000.000-2.000.000','2.000.000-3.000.000','>3.000.000','Lainnya'])->nullable();
+            $table->enum('penghasilan_ibu',['1.000.000-2.000.000','2.000.000-3.000.000','>3.000.000','Lainnya'])->nullable();
             $table->bigInteger('no_hp_ibu')->nullable();
             $table->timestamps();
         });
@@ -60,6 +62,7 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists('users');
         Schema::dropIfExists('formulirs');
     }
 };

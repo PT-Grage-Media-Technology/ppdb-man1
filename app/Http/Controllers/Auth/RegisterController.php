@@ -4,6 +4,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
+use App\Models\Formulir;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -35,23 +36,49 @@ class RegisterController extends Controller
                 'asal_sekolah.required' => 'Asal Sekolah harus diisi',
             ]
         );
-          // Simpan kata sandi asli
-    $originalPassword = $request->password;
 
-       $register = User::create([
+        // Simpan kata sandi asli
+        $originalPassword = $request->password;
+
+        // Generate kode pendaftaran
+        $kodePendaftaran = $this->generateKodePendaftaran();
+
+        // Membuat pengguna baru
+        $register = User::create([
             'nisn' => $request->nisn,
             'password' => bcrypt($originalPassword),
             'nama_peserta'=> $request->nama_peserta,
             'no_hp' => $request->no_hp,
-            'asal_sekolah' => $request->asal_sekolah
+            'asal_sekolah' => $request->asal_sekolah,
+            'kode_pendaftaran' => $kodePendaftaran
         ]);
-     // Login pengguna yang baru didaftarkan
-    Auth::login($register);
 
-     // Simpan kata sandi asli dalam sesi
-     Session::put('original_password', $originalPassword);
+        // Membuat formulir baru
+        Formulir::create([
+            'kode_pendaftaran' => $kodePendaftaran,
+            'nama_lengkap' => $request->nama_peserta,
+            'no_hp' => $request->no_hp,
+            'nama_sekolah_asal' => $request->asal_sekolah,
+            'nisn' => $request->nisn,
+            'user_id' => $register->id
+        ]);
+
+        // Login pengguna yang baru didaftarkan
+        Auth::login($register);
+
+        // Simpan kata sandi asli dalam sesi
+        Session::put('original_password', $originalPassword);
+
         return redirect()->route('notif');
     }
+
+    private function generateKodePendaftaran()
+    {
+        $year = date('Y');
+        $randomNumber = rand(100, 999); // Tiga digit angka random
+        return 'PPDB' . $year . $randomNumber;
+    }
+
 
     // halaman notif ketika berhasil daftar akun
     public function notif()

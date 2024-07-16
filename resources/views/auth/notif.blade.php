@@ -6,7 +6,7 @@
                 <div class="card-header text-center pt-4">
                     <h5>Selamat Pendaftaran Berhasil</h5>
                     <h6>Hai!,{{ auth()->user()->nama_peserta }}</h6>
-                    {{-- <p>Kode Pendaftaran : 029393</p> --}}
+                    <p>Kode Pendaftaran : {{ auth()->user()->kode_pendaftaran }}</p>
                 </div>
 
                 <div class="text-center">

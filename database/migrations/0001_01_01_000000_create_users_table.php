@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->string('kode_pendaftaran');
             $table->bigInteger('nisn');
             $table->string('nama_peserta');
             $table->string('email')->unique()->nullable();
@@ -20,6 +21,7 @@ return new class extends Migration
             $table->bigInteger('no_hp');
             $table->string('asal_sekolah');
             $table->string('password');
+            $table->boolean('is_admin')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });

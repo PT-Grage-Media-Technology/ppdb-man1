@@ -17,6 +17,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'kode_pendaftaran',
         'nama_peserta',
         'nisn',
         'password',
@@ -45,5 +46,10 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function formulirs()
+    {
+        return $this->hasMany(Formulir::class);
     }
 }

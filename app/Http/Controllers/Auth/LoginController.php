@@ -21,39 +21,33 @@ class LoginController extends Controller
     {
         $request->validate(
             [
-                'nomor_induk' => 'required',
+                'nisn' => 'required',
                 'password' => 'required',
             ],
             [
-                'nomor_induk.required' => 'Nomor Induk harus diisi',
+                'nisn.required' => 'Nisn harus diisi',
                 'password.required' => 'Password harus diisi',
             ]
         );
 
-        $credentials = $request->only('nomor_induk', 'password');
+        $credentials = $request->only('nisn', 'password');
 
-        if (Auth::attempt($credentials, $request->remember)) {
-            // $user = Auth::user();
-            // if (strpos($user->own, 'guru') === 0 || strpos($user->own, 'admin') === 0) {
-            //     return redirect()->route('dashboard-guru');
-            // } elseif (strpos($user->own, 'siswa') === 0) {
-            //     return redirect()->route('dashboard-siswa');
-            // }
-            $user = Auth::user();
-            $user->assignRolesBasedOnAttributes();
-            if ($user->hasRole('industri')) {
-                return redirect()->route('paraf-index');
+        if (Auth::attempt(['nisn' => $credentials['nisn'], 'password' => $credentials['password']], $request->remember)) {
+            // Jika login berhasil, periksa apakah pengguna adalah admin
+            if (Auth::user()->is_admin) {
+                return redirect()->route('dashboard');
             } else {
-                return redirect()->route('home');
+                return redirect()->route('formulir-pendaftaran');
             }
         }
 
-        return redirect()->back()->with('error', 'Nomor Induk atau Password salah');
+        return redirect()->back()->with('error', 'Nisn atau Password salah');
     }
+
 
     public function logout()
     {
         Auth::logout();
-        return redirect('login')->with('success', 'Berhasil Logout');
+        return redirect('login');
     }
 }
