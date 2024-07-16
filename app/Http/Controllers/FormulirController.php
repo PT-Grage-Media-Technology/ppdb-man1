@@ -21,6 +21,7 @@ class FormulirController extends Controller
     $completionPercentage = $formulir ? $formulir->getCompletionPercentage() : 0;
         return view('pages.formulir', compact('formulir', 'completionPercentage'));
     }
+
     public function store(Request $request)
     {
 
@@ -61,6 +62,16 @@ class FormulirController extends Controller
             return redirect()->back()->with('error', 'Formulir tidak ditemukan');
         }
     }
-
+    
+    public function printForm(Request $request)
+    {
+        // Dapatkan data yang diperlukan dari request atau dari database
+        $formulir = Formulir::where('kode_pendaftaran', $request->kode_pendaftaran)->first();
+        // Pastikan data formulir ada sebelum melanjutkan
+        if (!$formulir) {
+            abort(404);
+        }
+        return view('pages.printForm', compact('formulir'));
+    }
 
 }

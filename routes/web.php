@@ -32,3 +32,4 @@ Route::post('formulir-pendaftaran-post', [FormulirController::class, 'store'])->
 
 // data peserta didik baru
 Route::get('list-peserta', [ListPesertaController::class, 'index'])->name('list-peserta')->middleware('auth');
+Route::get('/print-form', [FormulirController::class, 'printForm'])->name('print.form');
