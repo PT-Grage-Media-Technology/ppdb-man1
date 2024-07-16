@@ -2,13 +2,14 @@
 
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\FormulirController;
+use App\Http\Controllers\ListPesertaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 
 Route::get('/', function () {
-    return view('pages.data-siswa');
+    return redirect('/login');
 });
 
 // Register
@@ -28,3 +29,6 @@ Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('
 // formulir pendaftaran
 Route::get('formulir-pendaftaran', [FormulirController::class, 'index'])->name('formulir-pendaftaran')->middleware('auth');
 Route::post('formulir-pendaftaran-post', [FormulirController::class, 'store'])->name('formulir-pendaftaran-post')->middleware('auth');
+
+// data peserta didik baru
+Route::get('list-peserta', [ListPesertaController::class, 'index'])->name('list-peserta')->middleware('auth');

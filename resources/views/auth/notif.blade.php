@@ -20,7 +20,7 @@
                     <a href="{{ route('formulir-pendaftaran') }}" class="btn bg-gradient-dark w-100 my-4 mb-2">Lanjut Proses?</a>
                 </div>
                 <div class="text-center">
-                    <a href="/" class="btn bg-gradient-dark w-100 my-4 mb-2">Lanjut Nanti?</a>
+                    <a href="https://grageacademy.online" class="btn bg-gradient-dark w-100 my-4 mb-2">Lanjut Nanti?</a>
                 </div>
             </div>
         </div>

@@ -35,7 +35,7 @@ class LoginController extends Controller
         if (Auth::attempt(['nisn' => $credentials['nisn'], 'password' => $credentials['password']], $request->remember)) {
             // Jika login berhasil, periksa apakah pengguna adalah admin
             if (Auth::user()->is_admin) {
-                return redirect()->route('dashboard');
+                return redirect()->route('list-peserta');
             } else {
                 return redirect()->route('formulir-pendaftaran');
             }
