@@ -37,7 +37,7 @@ class LoginController extends Controller
             if (Auth::user()->is_admin) {
                 return redirect()->route('list-peserta');
             } else {
-                return redirect()->route('formulir-pendaftaran');
+                return redirect()->route('formulir-pendaftaran')->with('status', 'login_success');
             }
         }
 

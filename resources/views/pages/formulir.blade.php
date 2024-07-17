@@ -391,6 +391,82 @@
 
     </div>
 
+<!-- Modal -->
+<div class="modal fade" id="pengumumanModal" tabindex="-1" aria-labelledby="pengumumanModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-gradient-primary">
+                <h5 class="modal-title text-white" id="pengumumanModalLabel"><i class="fa fa-flag"></i> Hasil Pengumuman</h5>
+                <button type="button"    class="close badge badge-sm bg-gradient-danger text-center" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card bg-primary">
+                            <div class="card-body">
+                             <p class="text-white text-start text-sm mb-0">Jadwal PPDB Gelombang 2</p>
+                             <p class="text-white text-start text-sm mb-0">Pendaftaran : 16 April 2024 s.d. 29 Juni 2024 , Pengumuman : 01 Juli 2024</p>
+                             <p class="text-white text-start text-sm mb-0">Daftar Ulang : 01 Juli 2024 s.d. 05 Juli 2024</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-1">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <p class="text-center">
+                                    <img src="{{ asset('assets/img/logoman1.png') }}" alt="Logo Sekolah" width="100">
+                                </p>
+                                <h5 class="text-center" >Pengumuman Hasil Pendaftaran</h5>
+                                <div class="text-center">
+                                <p id="togglePdf"  class="badge badge-sm bg-gradient-primary" style="cursor: pointer;">klik di sini</p>
+                            </div>
+                                <div id="pdfContainer" class="text-center mt-4" style="display: none;">
+                                    <embed src="{{ asset('assets/Formulir.pdf') }}" type="application/pdf" width="100%" height="600px" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function() {
+        $('#togglePdf').click(function() {
+            $('#pdfContainer').slideToggle();
+        });
+    });
+</script>
+
+@if (session('status'))
+    <script type="text/javascript">
+        $(document).ready(function() {
+            localStorage.setItem('showModal', 'true');
+            $('#pengumumanModal').modal('show');
+        });
+    </script>
+@endif
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        if (localStorage.getItem('showModal') === 'true') {
+            $('#pengumumanModal').modal('show');
+        }
+    });
+</script>
+
+
+
     <script>
     function openPrintPage() {
         // Anda bisa menambahkan logika untuk mendapatkan data yang diperlukan jika belum ada

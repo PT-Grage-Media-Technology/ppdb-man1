@@ -56,6 +56,7 @@ return new class extends Migration
             $table->bigInteger('no_hp_ibu')->nullable();
             // status di terima
             $table->enum('status', ['Diterima', 'Ditolak'])->nullable();
+            $table->enum('pengumuman', ['Diterima', 'Ditolak', 'Menunggu'])->nullable()->default('Menunggu');
             $table->timestamps();
         });
     }

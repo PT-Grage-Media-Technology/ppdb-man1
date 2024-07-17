@@ -46,16 +46,20 @@ class ListPesertaController extends Controller
     }
 
 
+
     public function terima($user_id)
 {
     $formulir = Formulir::where('user_id', $user_id)->first();
 
     if ($formulir) {
-        $formulir->update(['status' => 'Diterima']);
-        return redirect()->back()->with('success', 'Peserta telah diterima.');
-    } else {
-        return redirect()->back()->with('error', 'Formulir tidak ditemukan.');
+        $formulir->status = 'Diterima';
+        $formulir->pengumuman = 'Diterima';
+        $formulir->save();
+
+        return redirect()->back()->with('success', 'Formulir telah diterima.');
     }
+
+    return redirect()->back()->with('error', 'Formulir tidak ditemukan.');
 }
 
 public function tolak($user_id)
@@ -63,12 +67,16 @@ public function tolak($user_id)
     $formulir = Formulir::where('user_id', $user_id)->first();
 
     if ($formulir) {
-        $formulir->update(['status' => 'Ditolak']);
-        return redirect()->back()->with('success', 'Peserta telah ditolak.');
-    } else {
-        return redirect()->back()->with('error', 'Formulir tidak ditemukan.');
+        $formulir->status = 'Ditolak';
+        $formulir->pengumuman = 'Ditolak';
+        $formulir->save();
+
+        return redirect()->back()->with('success', 'Formulir telah ditolak.');
     }
+
+    return redirect()->back()->with('error', 'Formulir tidak ditemukan.');
 }
+
 
 
 }
