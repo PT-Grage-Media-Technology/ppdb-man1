@@ -21,7 +21,7 @@ class RegisterController extends Controller
     {
         $request->validate(
             [
-                'nisn' => 'required|max:10',
+                'nisn' => 'required|max:10|min:10',
                 'password' => 'required',
                 'nama_peserta' => 'required',
                 'no_hp' => 'required',
@@ -30,6 +30,7 @@ class RegisterController extends Controller
             [
                 'nisn.required' => 'NISN harus diisi',
                 'nisn.max' => 'NISN maksimal 10 karakter',
+                'nisn.min' => 'NISN minimal 10 karakter',
                 'password.required' => 'Password harus diisi',
                 'no_hp.required' => 'Nomor Handphone harus diisi',
                 'nama_peserta.required' => 'Nama harus diisi',
