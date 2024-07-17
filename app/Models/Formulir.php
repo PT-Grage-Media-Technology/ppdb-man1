@@ -16,7 +16,7 @@ class Formulir extends Model
         'nik', 'nisn', 'tempat_lahir', 'tanggal_lahir', 'alamat_jalan', 'rt', 'desa', 'kecamatan', 'kabupaten', 'provinsi',
         'no_hp', 'status_ayah', 'nik_ayah', 'nama_ayah', 'tanggal_lahir_ayah', 'pekerjaan_ayah', 'pendidikan_ayah', 'penghasilan_ayah',
         'no_hp_ayah', 'status_ibu', 'nik_ibu', 'nama_ibu', 'tanggal_lahir_ibu', 'pekerjaan_ibu', 'pendidikan_ibu', 'penghasilan_ibu',
-        'no_hp_ibu', 'user_id','foto',
+        'no_hp_ibu', 'user_id','foto','status',
     ];
 
     public function user()

@@ -54,6 +54,8 @@ return new class extends Migration
             $table->enum('pendidikan_ibu', ['SD/Sederajat', 'SMP/Sederajat', 'SMA/Sederajat', 'D1', 'D2', 'D3', 'D4', 'S1', 'S2', 'S3','Lainnya'])->nullable();
             $table->enum('penghasilan_ibu',['1.000.000-2.000.000','2.000.000-3.000.000','>3.000.000','Lainnya'])->nullable();
             $table->bigInteger('no_hp_ibu')->nullable();
+            // status di terima
+            $table->enum('status', ['Diterima', 'Ditolak'])->nullable();
             $table->timestamps();
         });
     }
