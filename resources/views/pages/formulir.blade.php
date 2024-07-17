@@ -13,12 +13,9 @@
                         @if ($completionPercentage == 100)
                             {{-- <a href="#" class="btn btn-success btn-sm ms-auto"><i class="fa fa-print"></i> Cetak Formulir</a> --}}
                             <button class="btn btn-success btn-sm ms-auto" onclick="openPrintPage()">Cetak Formulir</button>
-
                         @else
                             <button class="btn btn-secondary btn-sm ms-auto" disabled><i class="fa fa-print"></i> Cetak
                                 Formulir</button>
-
-
                         @endif
 
                     </div>
@@ -116,8 +113,9 @@
                         <img alt="belum ada foto!" class="mb-3" id="currentImage"
                             style="width: 80px; height: 100px; border-radius: 10px; object-fit: cover; margin-left: 100px;"
                             src="{{ asset('foto_siswa/' . $formulir->foto) }}">
-                            {{-- priview real time --}}
-                            <img id="newImage" src="#" alt="Preview" style="display: none; width: 100px; height: 150px; border-radius: 10px; object-fit: cover; margin-left: 100px; ">
+                        {{-- priview real time --}}
+                        <img id="newImage" src="#" alt="Preview"
+                            style="display: none; width: 100px; height: 150px; border-radius: 10px; object-fit: cover; margin-left: 100px; ">
                         <div class="col-md-4">
 
                             <label for="example-text-input" class="form-control-label">Foto 3x4 Merah</label>
@@ -391,91 +389,108 @@
 
     </div>
 
-<!-- Modal -->
-<div class="modal fade" id="pengumumanModal" tabindex="-1" aria-labelledby="pengumumanModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header bg-gradient-primary">
-                <h5 class="modal-title text-white" id="pengumumanModalLabel"><i class="fa fa-flag"></i> Hasil Pengumuman</h5>
-                <button type="button"    class="close badge badge-sm bg-gradient-danger text-center" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
+    <!-- Modal -->
+    <div class="modal fade" id="pengumumanModal" tabindex="-1" aria-labelledby="pengumumanModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-gradient-primary">
+                    <h5 class="modal-title text-white" id="pengumumanModalLabel"><i class="fa fa-flag"></i> Hasil
+                        Pengumuman</h5>
+                    <button type="button" class="close badge badge-sm bg-gradient-danger text-center"
+                        data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
 
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card bg-primary">
-                            <div class="card-body">
-                             <p class="text-white text-start text-sm mb-0">Jadwal PPDB Gelombang 2</p>
-                             <p class="text-white text-start text-sm mb-0">Pendaftaran : 16 April 2024 s.d. 29 Juni 2024 , Pengumuman : 01 Juli 2024</p>
-                             <p class="text-white text-start text-sm mb-0">Daftar Ulang : 01 Juli 2024 s.d. 05 Juli 2024</p>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card bg-primary">
+                                <div class="card-body">
+                                    <p class="text-white text-start text-sm mb-0">Jadwal PPDB Gelombang 2</p>
+                                    <p class="text-white text-start text-sm mb-0">Pendaftaran : 16 April 2024 s.d. 29 Juni
+                                        2024 , Pengumuman : 01 Juli 2024</p>
+                                    <p class="text-white text-start text-sm mb-0">Daftar Ulang : 01 Juli 2024 s.d. 05 Juli
+                                        2024</p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="row mt-1">
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <p class="text-center">
-                                    <img src="{{ asset('assets/img/logoman1.png') }}" alt="Logo Sekolah" width="100">
-                                </p>
-                                <h5 class="text-center" >Pengumuman Hasil Pendaftaran</h5>
-                                <div class="text-center">
-                                <p id="togglePdf"  class="badge badge-sm bg-gradient-primary" style="cursor: pointer;">klik di sini</p>
-                            </div>
-                                <div id="pdfContainer" class="text-center mt-4" style="display: none;">
-                                    <embed src="{{ asset('assets/Formulir.pdf') }}" type="application/pdf" width="100%" height="600px" />
+                    <div class="row mt-1">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <p class="text-center">
+                                        <img src="{{ asset('assets/img/logoman1.png') }}" alt="Logo Sekolah"
+                                            width="100">
+                                    </p>
+                                    <h5 class="text-center">Pengumuman Hasil Pendaftaran</h5>
+                                    <div class="text-center">
+                                        <p id="togglePdf" class="badge badge-sm bg-gradient-primary"
+                                            style="cursor: pointer;">klik di sini</p>
+                                    </div>
+                                    {{-- Tampilkan PDF jika pengumuman == 'Diterima' --}}
+                                    @if ($formulir->pengumuman == 'Diterima')
+                                        <div id="pdfContainer" class="text-center mt-4">
+                                            <embed src="{{ asset('assets/Formulir.pdf') }}" type="application/pdf"
+                                                width="100%" height="600px" />
+                                        </div>
+
+                                        {{-- Tampilkan pesan jika pengumuman == 'Ditolak' --}}
+                                    @elseif ($formulir->pengumuman == 'Ditolak')
+                                        <div id="pdfContainer" class="text-center mt-4 bg-gradient-danger">
+                                            <h5 class="text-center text-white">MAAF ANDA TIDAK DITERIMA</h5>
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
+            </div>
         </div>
     </div>
-</div>
 
-
-<script>
-    $(document).ready(function() {
-        $('#togglePdf').click(function() {
-            $('#pdfContainer').slideToggle();
-        });
-    });
-</script>
-
-@if (session('status'))
-    <script type="text/javascript">
+{{-- js modal --}}
+    <script>
         $(document).ready(function() {
-            localStorage.setItem('showModal', 'true');
-            $('#pengumumanModal').modal('show');
+            $('#togglePdf').click(function() {
+                $('#pdfContainer').slideToggle();
+            });
         });
     </script>
-@endif
 
-<script type="text/javascript">
-    $(document).ready(function() {
-        if (localStorage.getItem('showModal') === 'true') {
-            $('#pengumumanModal').modal('show');
-        }
-    });
-</script>
+    @if (session('status'))
+        <script type="text/javascript">
+            $(document).ready(function() {
+                localStorage.setItem('showModal', 'true');
+                $('#pengumumanModal').modal('show');
+            });
+        </script>
+    @endif
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            if (localStorage.getItem('showModal') === 'true') {
+                $('#pengumumanModal').modal('show');
+            }
+        });
+    </script>
 
 
-
+{{-- js cetak --}}
     <script>
-    function openPrintPage() {
-        // Anda bisa menambahkan logika untuk mendapatkan data yang diperlukan jika belum ada
-        // Misalnya, menggunakan Ajax untuk mendapatkan data dari server
-        // Lalu mengarahkan ke halaman cetak dengan data tersebut
+        function openPrintPage() {
+            // Anda bisa menambahkan logika untuk mendapatkan data yang diperlukan jika belum ada
+            // Misalnya, menggunakan Ajax untuk mendapatkan data dari server
+            // Lalu mengarahkan ke halaman cetak dengan data tersebut
 
-        var url = '/print-form?kode_pendaftaran={{ $formulir->kode_pendaftaran }}';
-        window.open(url, '_blank');
-    }
+            var url = '/print-form?kode_pendaftaran={{ $formulir->kode_pendaftaran }}';
+            window.open(url, '_blank');
+        }
     </script>
 
 
