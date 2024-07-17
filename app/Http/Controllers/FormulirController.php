@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Formulir;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreFormulirRequest;
@@ -62,16 +63,17 @@ class FormulirController extends Controller
             return redirect()->back()->with('error', 'Formulir tidak ditemukan');
         }
     }
-    
+
     public function printForm(Request $request)
     {
         // Dapatkan data yang diperlukan dari request atau dari database
         $formulir = Formulir::where('kode_pendaftaran', $request->kode_pendaftaran)->first();
+        $setting = Setting::first();
         // Pastikan data formulir ada sebelum melanjutkan
         if (!$formulir) {
             abort(404);
         }
-        return view('pages.printForm', compact('formulir'));
+        return view('pages.printForm', compact('formulir', 'setting'));
     }
 
 }

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\FormulirController;
 use App\Http\Controllers\ListPesertaController;
+use App\Http\Controllers\SettingController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ResetPasswordController;
@@ -32,6 +33,9 @@ Route::post('formulir-pendaftaran-post', [FormulirController::class, 'store'])->
 
 // data peserta didik baru
 Route::get('list-peserta', [ListPesertaController::class, 'index'])->name('list-peserta')->middleware('auth');
+
+Route::get('setting', [SettingController::class, 'index'])->name('setting')->middleware('auth');
+Route::post('/settings/update', [SettingController::class, 'update'])->name('settings.update');
 Route::get('/print-form', [FormulirController::class, 'printForm'])->name('print.form')->middleware('auth');
 
 Route::get('/terima/{user_id}', [ListPesertaController::class, 'terima'])->name('terima')->middleware('auth');
