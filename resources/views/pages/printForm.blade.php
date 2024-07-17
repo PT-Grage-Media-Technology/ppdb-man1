@@ -29,7 +29,7 @@
         <!-- Konten yang ingin dicetak, pastikan untuk menggunakan variabel yang dikirim dari controller -->
         <div>
             <div class="col-md-6 mt-3 mb-3 text-center">
-                <div class="fs-1">Formulir Pendaftaran Peserta Didik Baru Tahun Pelajaran 2024/2025</div>
+                <div class="fs-1">Formulir Pendaftaran Peserta Didik Baru Tahun Pelajaran {{ $setting->tahun_ajaran }}</div>
             </div>
 
             {{-- bagian 1 --}}
