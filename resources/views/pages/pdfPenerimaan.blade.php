@@ -127,7 +127,7 @@
                         <div>Cirebon, {{ $tgl_pengumuman }}</div>
                         <div>KETUA PPDB,</div>
                         <div>
-                            <img src="{{ public_path('settings/' . $ttd_ketua_ppdb) }}" alt="">
+                            <img src="{{ public_path('settings/' . $ttd_ketua_ppdb) }}" alt="" width="200px" height="100px">
                         </div>
                         <div style="font-weight: bold;">Ketua PPDB</div>
                     </div>
