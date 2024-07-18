@@ -54,6 +54,8 @@ class RegisterController extends Controller
             'kode_pendaftaran' => $kodePendaftaran
         ]);
 
+        // Menambahkan role peserta
+        $register->assignRole('peserta');
         // Membuat formulir baru
         Formulir::create([
             'kode_pendaftaran' => $kodePendaftaran,
