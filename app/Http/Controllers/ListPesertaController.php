@@ -60,14 +60,22 @@ class ListPesertaController extends Controller
     $user = User::where('id', $user_id)->first();
 
     if ($formulir) {
-        $formulir->status = 'Diterima';
-        $formulir->pengumuman = 'Diterima';
 
-        $formulir->save();
+    
+        $pdf_diterima = $this->savePDF($user, $formulir);
 
-        $this->savePDF($user, $formulir);
+        if($pdf_diterima){
 
-        return redirect()->back()->with('success', 'Formulir telah diterima.');
+            $formulir->status = 'Diterima';
+            $formulir->pengumuman = 'Diterima';
+            $formulir->pdf_diterima = $pdf_diterima;
+            $formulir->save();
+
+            return redirect()->back()->with('success', 'Formulir telah diterima.');
+        } else {
+            return redirect()->back()->with('error', 'pdf gagal disimpan');
+        }
+
     }
 
     return redirect()->back()->with('error', 'Formulir tidak ditemukan.');
@@ -121,17 +129,11 @@ public function savePDF($user, $formulir)
         $pdf->save($path);
         Log::info('PDF saved successfully at ' . $path);
 
-        return response()->json([
-            'message' => 'PDF berhasil disimpan',
-            'file_path' => $path
-        ]);
+        return $fileName;
     } catch (\Exception $e) {
         Log::error('Error saving PDF: ' . $e->getMessage());
 
-        return response()->json([
-            'message' => 'Failed to save PDF',
-            'error' => $e->getMessage()
-        ], 500);
+        return false;
     }
 }
 
