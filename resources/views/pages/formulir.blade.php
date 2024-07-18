@@ -469,10 +469,6 @@
 
     <script>
     function openPrintPage() {
-        // Anda bisa menambahkan logika untuk mendapatkan data yang diperlukan jika belum ada
-        // Misalnya, menggunakan Ajax untuk mendapatkan data dari server
-        // Lalu mengarahkan ke halaman cetak dengan data tersebut
-
         var url = '/print-form?kode_pendaftaran={{ $formulir->kode_pendaftaran }}';
         window.open(url, '_blank');
     }

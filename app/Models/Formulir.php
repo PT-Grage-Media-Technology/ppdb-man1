@@ -26,7 +26,7 @@ class Formulir extends Model
 // function untuk mengambil berapa persen kelengkapan data
     public function getCompletionPercentage()
     {
-        $fields = $this->fillable;
+        $fields = array_diff($this->fillable, ['status']);
         $filledFields = 0;
 
         foreach ($fields as $field) {

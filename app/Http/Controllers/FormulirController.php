@@ -75,5 +75,6 @@ class FormulirController extends Controller
         }
         return view('pages.printForm', compact('formulir', 'setting'));
     }
+    
 
 }
