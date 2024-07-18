@@ -434,7 +434,7 @@
                                     {{-- Tampilkan PDF jika pengumuman == 'Diterima' --}}
                                     @if ($formulir->pengumuman == 'Diterima')
                                         <div id="pdfContainer" class="text-center mt-4" style="display: none">
-                                            <embed src="{{ asset('assets/Formulir.pdf') }}" type="application/pdf"
+                                            <embed src="{{ asset('pdf/' . $formulir->pdf_diterima) }}" type="application/pdf"
                                                 width="100%" height="600px" />
                                         </div>
 
@@ -488,10 +488,14 @@
 
 {{-- js cetak --}}
     <script>
-    function openPrintPage() {
-        var url = '/print-form?kode_pendaftaran={{ $formulir->kode_pendaftaran }}';
-        window.open(url, '_blank');
-    }
+        function openPrintPage() {
+            // Anda bisa menambahkan logika untuk mendapatkan data yang diperlukan jika belum ada
+            // Misalnya, menggunakan Ajax untuk mendapatkan data dari server
+            // Lalu mengarahkan ke halaman cetak dengan data tersebut
+
+            var url = '/print-form?kode_pendaftaran={{ $formulir->kode_pendaftaran }}';
+            window.open(url, '_blank');
+        }
     </script>
 
 

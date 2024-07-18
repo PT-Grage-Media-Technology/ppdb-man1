@@ -60,9 +60,10 @@ class ListPesertaController extends Controller
     $user = User::where('id', $user_id)->first();
 
     if ($formulir) {
-        // $formulir->status = 'Diterima';
-        // $formulir->pengumuman = 'Diterima';
-        // $formulir->save();
+        $formulir->status = 'Diterima';
+        $formulir->pengumuman = 'Diterima';
+        
+        $formulir->save();
 
         $this->savePDF($user, $formulir);
 
