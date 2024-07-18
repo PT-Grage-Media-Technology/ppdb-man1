@@ -61,7 +61,7 @@ class ListPesertaController extends Controller
 
     if ($formulir) {
 
-    
+
         $pdf_diterima = $this->savePDF($user, $formulir);
 
         if($pdf_diterima){
@@ -110,7 +110,7 @@ public function savePDF($user, $formulir)
     $pdf = PDF::loadView('pages.pdfPenerimaan', $data);
 
     // Nama file dan path penyimpanan
-    $fileName = $user->nama_peserta . '_hasil_seleksi_ppdb.pdf';
+    $fileName = $data['nama_lengkap'] . '_hasil_seleksi_ppdb.pdf';
     $directory = public_path('pdf');
     $path = $directory . '/' . $fileName;
 

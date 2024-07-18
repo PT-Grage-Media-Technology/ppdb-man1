@@ -120,7 +120,7 @@
 
     {{-- TANDA TANGAN --}}
     <div style="text-align: right;">
-        <table style="width: 50%; margin-left: auto;">
+        <table style="width: 90%; margin-right: 50%;">
             <tr>
                 <td style="text-align: right;">
                     <div>
