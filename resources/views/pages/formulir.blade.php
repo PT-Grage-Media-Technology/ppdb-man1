@@ -392,7 +392,7 @@
     <!-- Modal -->
     <div class="modal fade" id="pengumumanModal" tabindex="-1" aria-labelledby="pengumumanModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-md">
             <div class="modal-content">
                 <div class="modal-header bg-gradient-primary">
                     <h5 class="modal-title text-white" id="pengumumanModalLabel"><i class="fa fa-flag"></i> Hasil
@@ -408,11 +408,21 @@
                         <div class="col-md-12">
                             <div class="card bg-primary">
                                 <div class="card-body">
-                                    <p class="text-white text-start text-sm mb-0">Jadwal PPDB Gelombang 2</p>
-                                    <p class="text-white text-start text-sm mb-0">Pendaftaran : 16 April 2024 s.d. 29 Juni
-                                        2024 , Pengumuman : 01 Juli 2024</p>
-                                    <p class="text-white text-start text-sm mb-0">Daftar Ulang : 01 Juli 2024 s.d. 05 Juli
-                                        2024</p>
+                                    <p class="text-white text-start text-sm mb-0">Jadwal PPDB {{ $setting->jadwal_ppdb }}</p>
+                                    <p class="text-white text-start text-sm mb-0">
+                                        Pendaftaran :
+                                        {{ \Carbon\Carbon::parse($setting->tgl_pendaftaran_mulai)->translatedFormat('d F Y') }}
+                                        s.d.
+                                        {{ \Carbon\Carbon::parse($setting->tgl_pendaftaran_selesai)->translatedFormat('d F Y') }}
+                                        2024 <br> Pengumuman : {{ \Carbon\Carbon::parse($setting->tgl_pengumuman)->translatedFormat('d F Y') }}
+                                    </p>
+                                    <p class="text-white text-start text-sm mb-0">
+                                        Daftar Ulang :
+                                        {{ \Carbon\Carbon::parse($setting->tgl_daftar_ulang_mulai)->translatedFormat('d F Y') }}
+                                        s.d.
+                                        {{ \Carbon\Carbon::parse($setting->tgl_daftar_ulang_selesai)->translatedFormat('d F Y') }}
+                                        2024
+                                    </p>
                                 </div>
                             </div>
                         </div>
