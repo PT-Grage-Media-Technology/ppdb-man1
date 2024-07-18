@@ -21,7 +21,6 @@ return new class extends Migration
             $table->bigInteger('no_hp');
             $table->string('asal_sekolah');
             $table->string('password');
-            $table->boolean('is_admin')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });

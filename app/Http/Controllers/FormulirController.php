@@ -20,7 +20,10 @@ class FormulirController extends Controller
 
     // Hitung persentase kelengkapan data
     $completionPercentage = $formulir ? $formulir->getCompletionPercentage() : 0;
-        return view('pages.formulir', compact('formulir', 'completionPercentage'));
+
+    // settung modal
+    $setting = Setting::first();
+        return view('pages.formulir', compact('formulir', 'completionPercentage', 'setting'));
     }
 
     public function store(Request $request)

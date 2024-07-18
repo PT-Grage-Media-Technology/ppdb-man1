@@ -439,9 +439,14 @@
                                         </div>
 
                                         {{-- Tampilkan pesan jika pengumuman == 'Ditolak' --}}
-                                    @elseif ($formulir->pengumuman == 'Ditolak')
+                                    @elseif  ($formulir->pengumuman == 'Ditolak')
                                         <div id="pdfContainer" class="text-center mt-4 bg-gradient-danger" style="display: none">
                                             <h5 class="text-center text-white">MAAF ANDA TIDAK DITERIMA</h5>
+                                        </div>
+
+                                    @elseif ($formulir->pengumuman == 'Menunggu')
+                                        <div id="pdfContainer" class="text-center mt-4 bg-gradient-danger" style="display: none">
+                                            <h5 class="text-center text-white">MENUNGGU PENGUMUMAN</h5>
                                         </div>
                                     @endif
                                 </div>
@@ -463,7 +468,7 @@
         });
     </script>
 
-    @if (session('status'))
+    @if (session('status') || $setting->is_pengumuman == '1')
         <script type="text/javascript">
             $(document).ready(function() {
                 localStorage.setItem('showModal', 'true');
@@ -471,7 +476,7 @@
             });
         </script>
     @endif
-
+  @if ($setting->is_pengumuman == '1')
     <script type="text/javascript">
         $(document).ready(function() {
             if (localStorage.getItem('showModal') === 'true') {
@@ -479,7 +484,7 @@
             }
         });
     </script>
-
+ @endif
 
 {{-- js cetak --}}
     <script>
