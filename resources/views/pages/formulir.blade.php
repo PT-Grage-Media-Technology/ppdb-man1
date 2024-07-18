@@ -423,7 +423,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <p class="text-center">
-                                        <img src="{{ asset('assets/img/logoman1.png') }}" alt="Logo Sekolah"
+                                        <img src="{{ asset('settings/' . $setting->logo_sekolah) }}" alt="Logo Sekolah"
                                             width="100">
                                     </p>
                                     <h5 class="text-center">Pengumuman Hasil Pendaftaran</h5>

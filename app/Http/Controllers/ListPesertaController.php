@@ -105,6 +105,9 @@ public function savePDF($user, $formulir)
         'nama_lengkap' => $formulir->nama_lengkap,
         'nama_sekolah_asal' => $formulir->nama_sekolah_asal,
         'kode_pendaftaran' => $formulir->kode_pendaftaran,
+        'nama_sekolah' => $setting->nama_sekolah,
+        'logo_sekolah' => $setting->logo_sekolah,
+        'ttd_ketua_ppdb' => $setting->ttd_ketua_ppdb,
     ];
 
     $pdf = PDF::loadView('pages.pdfPenerimaan', $data);

@@ -6,7 +6,11 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="../assets/img/logoman1.png">
+  @php
+      $setting = App\Models\Setting::first();
+  @endphp
+
+  <link rel="icon" type="image/png" href="{{ asset('settings/' . $setting->logo_sekolah) }}">
   <title>
   @yield('title')
   </title>
@@ -80,10 +84,9 @@
         <div class="row justify-content-center">
           <div class="col-lg-5 text-center mx-auto">
             <h1 class="text-white mb-2 mt-5">Selamat Datang!</h1>
-            <p class="text-lead text-white">PPDB Man 1 Cirebon
+            <p class="text-lead text-white">PPDB
                 @php
-                $setting = App\Models\Setting::first();
-                echo $setting->tahun_ajaran;
+                echo $setting->nama_sekolah .' ' . $setting->tahun_ajaran;
                 @endphp
             </p>
           </div>

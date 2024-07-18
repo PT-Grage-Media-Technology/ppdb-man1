@@ -13,7 +13,7 @@
         <div class="row justify-content-center border-bottom border-gray">
             <div class="d-flex pb-3">
                 <div>
-                    <img src="../assets/img/logoman1.png" alt="" width="150" height="150">
+                    <img src="{{ asset('settings/' . $setting->logo_sekolah) }}" alt="" width="150" height="150">
                 </div>
                 <div class="text-center">
                     <h2>KEMENTERIAN AGAMA REPUBLIK INDONESIA</h2>

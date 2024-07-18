@@ -6,7 +6,10 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="../assets/img/logoman1.png">
+  @php
+      $setting = App\Models\Setting::first();
+  @endphp
+  <link rel="icon" type="image/png" href="{{ asset('settings/' . $setting->logo_sekolah) }}">
   <title>
    @yield('title')
   </title>
@@ -39,8 +42,11 @@
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
       <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/argon-dashboard/pages/dashboard.html " target="_blank">
-        <img src="../assets/img/logoman1.png" class="navbar-brand-img h-100" alt="main_logo">
-        <span class="ms-1 font-weight-bold">PPDB MAN 1 Cirebon</span>
+        @php
+            $setting = App\Models\Setting::first();
+        @endphp
+        <img src="{{ asset('settings/' . $setting->logo_sekolah ) }}" class="navbar-brand-img h-100" alt="main_logo">
+        <span class="ms-1 font-weight-bold">PPDB {{ $setting->nama_sekolah }}</span>
       </a>
     </div>
     <hr class="horizontal dark mt-0">

@@ -16,6 +16,15 @@ return new class extends Migration
             $table->boolean('is_pengumuman')->default(false);
             $table->string('tahun_ajaran')->nullable();
             $table->date('tgl_pengumuman')->nullable();
+            $table->string('jadwal_ppdb')->nullable();
+            $table->date('tgl_pendaftaran_mulai')->nullable();
+            $table->date('tgl_pendaftaran_selesai')->nullable();
+            $table->date('tgl_daftar_ulang_mulai')->nullable();
+            $table->date('tgl_daftar_ulang_selesai')->nullable();
+            $table->string('ttd_ketua_ppdb')->nullable();
+            $table->string('logo_sekolah')->nullable();
+            $table->string('nama_sekolah')->nullable();
+
         });
     }
 

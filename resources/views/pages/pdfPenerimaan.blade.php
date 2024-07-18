@@ -43,7 +43,7 @@
         <table>
             <tr>
                 <td class="logo">
-                    <img src="{{ public_path('assets/img/logoman1.png') }}" alt="Logo">
+                    <img src="{{ public_path('settings/' . $logo_sekolah) }}" alt="Logo">
                 </td>
                 <td class="description">
                     <div>
@@ -76,8 +76,8 @@
     {{-- KETERANGAN --}}
     <div>
         <p>
-            Berdasarkan Surat Keputusan Kepala MAN 1 Cirebon, nomor 1588/Ma.10.36/PS.01/06/2023, tanggal
-            {{ $tgl_pengumuman }}, tentang Hasil Seleksi Peserta PPDB MAN 1 Cirebon Tahun Pelajaran {{ $tahun_ajaran }}.
+            Berdasarkan Surat Keputusan Kepala {{ $nama_sekolah }}, nomor 1588/Ma.10.36/PS.01/06/2023, tanggal
+            {{ $tgl_pengumuman }}, tentang Hasil Seleksi Peserta PPDB {{ $nama_sekolah }} Tahun Pelajaran {{ $tahun_ajaran }}.
             Sehubungan
             dengan hal tersebut, kami menyatakan bahwa:
         </p>
@@ -127,7 +127,7 @@
                         <div>Cirebon, {{ $tgl_pengumuman }}</div>
                         <div>KETUA PPDB,</div>
                         <div>
-                            <img src="{{ public_path('assets/img/logoman1.png') }}" alt="">
+                            <img src="{{ public_path('settings/' . $ttd_ketua_ppdb) }}" alt="">
                         </div>
                         <div style="font-weight: bold;">Ketua PPDB</div>
                     </div>
