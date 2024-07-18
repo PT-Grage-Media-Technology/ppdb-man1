@@ -433,14 +433,14 @@
                                     </div>
                                     {{-- Tampilkan PDF jika pengumuman == 'Diterima' --}}
                                     @if ($formulir->pengumuman == 'Diterima')
-                                        <div id="pdfContainer" class="text-center mt-4">
+                                        <div id="pdfContainer" class="text-center mt-4" style="display: none">
                                             <embed src="{{ asset('assets/Formulir.pdf') }}" type="application/pdf"
                                                 width="100%" height="600px" />
                                         </div>
 
                                         {{-- Tampilkan pesan jika pengumuman == 'Ditolak' --}}
                                     @elseif ($formulir->pengumuman == 'Ditolak')
-                                        <div id="pdfContainer" class="text-center mt-4 bg-gradient-danger">
+                                        <div id="pdfContainer" class="text-center mt-4 bg-gradient-danger" style="display: none">
                                             <h5 class="text-center text-white">MAAF ANDA TIDAK DITERIMA</h5>
                                         </div>
                                     @endif
