@@ -62,7 +62,7 @@ class ListPesertaController extends Controller
     if ($formulir) {
         $formulir->status = 'Diterima';
         $formulir->pengumuman = 'Diterima';
-        
+
         $formulir->save();
 
         $this->savePDF($user, $formulir);

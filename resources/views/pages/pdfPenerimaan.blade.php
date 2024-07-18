@@ -119,10 +119,10 @@
     </div>
 
     {{-- TANDA TANGAN --}}
-    <div style="text-align: right">
-        <table style="width: 100%; float: right;">
+    <div style="text-align: right;">
+        <table style="width: 50%; margin-left: auto;">
             <tr>
-                <td style="width: 50%; text-align: left;">
+                <td style="text-align: right;">
                     <div>
                         <div>Cirebon, {{ $tgl_pengumuman }}</div>
                         <div>KETUA PPDB,</div>
