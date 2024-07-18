@@ -3,8 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Formulir;
+use App\Models\Setting;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Yajra\DataTables\Facades\DataTables;
+use PDF;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
+
 class ListPesertaController extends Controller
 {
     public function index(Request $request)
@@ -50,11 +57,14 @@ class ListPesertaController extends Controller
     public function terima($user_id)
 {
     $formulir = Formulir::where('user_id', $user_id)->first();
+    $user = User::where('id', $user_id)->first();
 
     if ($formulir) {
-        $formulir->status = 'Diterima';
-        $formulir->pengumuman = 'Diterima';
-        $formulir->save();
+        // $formulir->status = 'Diterima';
+        // $formulir->pengumuman = 'Diterima';
+        // $formulir->save();
+
+        $this->savePDF($user, $formulir);
 
         return redirect()->back()->with('success', 'Formulir telah diterima.');
     }
@@ -75,6 +85,53 @@ public function tolak($user_id)
     }
 
     return redirect()->back()->with('error', 'Formulir tidak ditemukan.');
+}
+
+public function savePDF($user, $formulir)
+{
+    $setting = Setting::first();
+    $data = [
+        'tahun_ajaran' => $setting->tahun_ajaran,
+        'tgl_pengumuman' => Carbon::parse($setting->tgl_pengumuman)->translatedFormat('d F Y'),
+        'nama_lengkap' => $formulir->nama_lengkap,
+        'nama_sekolah_asal' => $formulir->nama_sekolah_asal,
+        'kode_pendaftaran' => $formulir->kode_pendaftaran,
+    ];
+
+    $pdf = PDF::loadView('pages.pdfPenerimaan', $data);
+
+    // Nama file dan path penyimpanan
+    $fileName = $user->nama_peserta . '_hasil_seleksi_ppdb.pdf';
+    $directory = public_path('pdf');
+    $path = $directory . '/' . $fileName;
+
+    // Log untuk memastikan direktori dan path
+    Log::info('Directory: ' . $directory);
+    Log::info('File path: ' . $path);
+
+    // Cek dan buat direktori jika belum ada
+    if (!File::exists($directory)) {
+        File::makeDirectory($directory, 0755, true);
+        Log::info('Directory created: ' . $directory);
+    }
+
+    // Simpan file ke direktori
+    try {
+        $pdf->save($path);
+        Log::info('PDF saved successfully at ' . $path);
+
+        return response()->json([
+            'message' => 'PDF berhasil disimpan',
+            'file_path' => $path
+        ]);
+    } catch (\Exception $e) {
+        Log::error('Error saving PDF: ' . $e->getMessage());
+
+        return response()->json([
+            'message' => 'Failed to save PDF',
+            'error' => $e->getMessage()
+        ], 500);
+    }
 }
 
 

@@ -38,5 +38,9 @@ Route::get('setting', [SettingController::class, 'index'])->name('setting')->mid
 Route::post('/settings/update', [SettingController::class, 'update'])->name('settings.update')->middleware('auth','role:admin');
 Route::get('/print-form', [FormulirController::class, 'printForm'])->name('print.form')->middleware('auth','role:peserta');
 
+
+
+// pdf
+Route::get('save-pdf', [ListPesertaController::class, 'savePDF'])->name('pages.pdfPenerimaan');
 Route::get('/terima/{user_id}', [ListPesertaController::class, 'terima'])->name('terima')->middleware('auth','role:admin');
 Route::get('/tolak/{user_id}', [ListPesertaController::class, 'tolak'])->name('tolak')->middleware('auth','role:admin');

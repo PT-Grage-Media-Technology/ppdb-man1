@@ -57,6 +57,9 @@ return new class extends Migration
             // status di terima
             $table->enum('status', ['Diterima', 'Ditolak'])->nullable();
             $table->enum('pengumuman', ['Diterima', 'Ditolak', 'Menunggu'])->nullable()->default('Menunggu');
+            // pdf
+            $table->string('pdf_diterima')->nullable();
+
             $table->timestamps();
         });
     }
