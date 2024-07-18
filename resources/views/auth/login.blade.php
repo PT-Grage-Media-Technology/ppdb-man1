@@ -26,9 +26,19 @@
                             @include('alerts.feedback', ['field' => 'nisn'])
                         </div>
                         <div class="mb-3 {{ $errors->has('password') ? ' has-danger' : '' }}">
-                            <input type="text" name="password" class="form-control {{ $errors->has('password') ? ' has-danger' : '' }}" placeholder="Password" aria-label="Password" value="{{ old('password') }}">
+                            <div class="input-group">
+                                <input id="password" type="password" name="password" class="form-control {{ $errors->has('password') ? ' has-danger' : '' }}" placeholder="Password" aria-label="Password" value="{{ old('password') }}">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">
+                                        <i id="togglePassword" class="fas fa-eye"></i>
+                                    </span>
+                                </div>
+                            </div>
                             @include('alerts.feedback', ['field' => 'password'])
                         </div>
+
+
+
                         {{-- <div class="form-check form-check-info text-start">
                             <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked>
                             <label class="form-check-label" for="flexCheckDefault">
@@ -57,5 +67,43 @@
             toastr.error("{{ session('error') }}");
         </script>
     @endif
+
+    <style>
+        .input-group {
+            position: relative;
+        }
+
+        .input-group .input-group-append {
+            position: absolute;
+            right: 0;
+            top: 0;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            background: none;
+            border: none;
+            cursor: pointer;
+
+        }
+
+        .input-group .input-group-text {
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        </style>
+
+        <script>
+        document.getElementById('togglePassword').addEventListener('click', function (e) {
+            const passwordInput = document.getElementById('password');
+            const icon = e.target;
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            icon.classList.toggle('fa-eye');
+            icon.classList.toggle('fa-eye-slash');
+        });
+        </script>
 
 @endsection

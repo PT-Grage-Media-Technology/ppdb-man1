@@ -31,8 +31,17 @@
                             @include('alerts.feedback', ['field' => 'nisn'])
                         </div>
                         <div class="mb-3">
-                            <input type="password" class="form-control" placeholder="Kata Sandi" aria-label="Password" name="password" value="{{ old('password') }}">
+                            <div class="input-group">
+                                <input id="password2" type="password" name="password" class="form-control" placeholder="Kata Sandi" aria-label="Password" value="{{ old('password') }}">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">
+                                        <i id="togglePassword2" class="fas fa-eye"></i>
+                                    </span>
+                                </div>
+                            </div>
                         </div>
+
+
                         {{-- <div class="form-check form-check-info text-start">
                             <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked>
                             <label class="form-check-label" for="flexCheckDefault">
@@ -50,4 +59,39 @@
             </div>
         </div>
     </div>
+
+    <style>
+        .input-group {
+            position: relative;
+        }
+
+        .input-group .input-group-append {
+            position: absolute;
+            right: 0;
+            top: 0;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 15px;
+        }
+
+        .input-group .input-group-text {
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        </style>
+
+        <script>
+        document.getElementById('togglePassword2').addEventListener('click', function (e) {
+            const passwordInput = document.getElementById('password2');
+            const icon = e.target;
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            icon.classList.toggle('fa-eye');
+            icon.classList.toggle('fa-eye-slash');
+        });
+        </script>
+
 @endsection
