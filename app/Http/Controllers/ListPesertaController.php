@@ -23,7 +23,7 @@ class ListPesertaController extends Controller
                 ->addIndexColumn()
                 ->addColumn('kelengkapan_data', function ($peserta) {
                     $completionPercentage = $peserta->getCompletionPercentage();
-                    return '<span class="badge badge-sm bg-gradient-danger text-center">Kelengkapan Data: ' . $completionPercentage . '%</span>';
+                    return '<a href="' . route('formulir-pendaftaran-user', $peserta->user_id) . '" class="badge badge-sm bg-gradient-danger text-center">Kelengkapan Data: ' . $completionPercentage . '%</a>';
                 })
                 ->addColumn('action', function ($peserta) {
                     $actions = '<td class="text-end"><div class="actions">';

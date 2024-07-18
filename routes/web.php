@@ -29,14 +29,14 @@ Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('
 
 // formulir pendaftaran
 Route::get('formulir-pendaftaran', [FormulirController::class, 'index'])->name('formulir-pendaftaran')->middleware('auth','role:peserta');
-Route::post('formulir-pendaftaran-post', [FormulirController::class, 'store'])->name('formulir-pendaftaran-post')->middleware('auth','role:peserta');
+Route::post('formulir-pendaftaran-post', [FormulirController::class, 'store'])->name('formulir-pendaftaran-post')->middleware('auth','role:peserta|admin');
 
 // data peserta didik baru
 Route::get('list-peserta', [ListPesertaController::class, 'index'])->name('list-peserta')->middleware('auth','role:admin');
 
 Route::get('setting', [SettingController::class, 'index'])->name('setting')->middleware('auth','role:admin');
 Route::post('/settings/update', [SettingController::class, 'update'])->name('settings.update')->middleware('auth','role:admin');
-Route::get('/print-form', [FormulirController::class, 'printForm'])->name('print.form')->middleware('auth','role:peserta');
+Route::get('/print-form', [FormulirController::class, 'printForm'])->name('print.form')->middleware('auth','role:peserta|admin');
 
 
 
@@ -44,3 +44,4 @@ Route::get('/print-form', [FormulirController::class, 'printForm'])->name('print
 Route::get('save-pdf', [ListPesertaController::class, 'savePDF'])->name('pages.pdfPenerimaan');
 Route::get('/terima/{user_id}', [ListPesertaController::class, 'terima'])->name('terima')->middleware('auth','role:admin');
 Route::get('/tolak/{user_id}', [ListPesertaController::class, 'tolak'])->name('tolak')->middleware('auth','role:admin');
+Route::get('formulir-pendaftaran/{user_id}', [FormulirController::class, 'indexUser'])->name('formulir-pendaftaran-user')->middleware('auth','role:admin');

@@ -14,6 +14,7 @@ class FormulirController extends Controller
     {
     // Ambil pengguna yang sedang login
     $user = Auth::user();
+    $user_id = $user->id;
 
     // Ambil data formulir terkait dengan pengguna
     $formulir = Formulir::where('user_id', $user->id)->first();
@@ -23,7 +24,20 @@ class FormulirController extends Controller
 
     // settung modal
     $setting = Setting::first();
-        return view('pages.formulir', compact('formulir', 'completionPercentage', 'setting'));
+        return view('pages.formulir', compact('formulir', 'completionPercentage', 'setting', 'user_id'));
+    }
+
+    public function indexUser(Request $request, $user_id)
+    {
+    // Ambil data formulir terkait dengan pengguna
+    $formulir = Formulir::where('user_id', $user_id)->first();
+
+    // Hitung persentase kelengkapan data
+    $completionPercentage = $formulir ? $formulir->getCompletionPercentage() : 0;
+
+    // settung modal
+    $setting = Setting::first();
+        return view('pages.formulir', compact('formulir', 'completionPercentage', 'setting', 'user_id'));
     }
 
     public function store(Request $request)
@@ -78,6 +92,6 @@ class FormulirController extends Controller
         }
         return view('pages.printForm', compact('formulir', 'setting'));
     }
-    
+
 
 }

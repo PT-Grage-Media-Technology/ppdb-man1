@@ -27,7 +27,7 @@
                 <div class="card-body">
                     <form action="{{ route('formulir-pendaftaran-post') }}" method="post" enctype="multipart/form-data">
                         @csrf
-                        <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+                        <input type="hidden" name="user_id" value="{{ $user_id }}">
                         <p class="text-uppercase text-sm">Registrasi Peserta Didik</p>
                         <div class="row">
                             <div class="col-md-6">
@@ -489,12 +489,8 @@
 {{-- js cetak --}}
     <script>
         function openPrintPage() {
-            // Anda bisa menambahkan logika untuk mendapatkan data yang diperlukan jika belum ada
-            // Misalnya, menggunakan Ajax untuk mendapatkan data dari server
-            // Lalu mengarahkan ke halaman cetak dengan data tersebut
-
             var url = '/print-form?kode_pendaftaran={{ $formulir->kode_pendaftaran }}';
-            window.open(url, '_blank');
+            window.location.href = url;
         }
     </script>
 

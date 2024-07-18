@@ -147,11 +147,15 @@
             // Generate QR code
             var qr = new QRious({
                 element: document.getElementById('qr-code'),
-                value: '{{ $formulir->nisn . '-' . $formulir->nama_lengkap }}' ,
+                value: '{{ $formulir->nisn . '-' . $formulir->nama_lengkap }}',
                 size: 100
             });
 
             window.print();
+
+            window.onafterprint = function() {
+                window.history.back();
+            };
         };
     </script>
 
