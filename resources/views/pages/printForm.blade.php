@@ -154,7 +154,9 @@
             window.print();
 
             window.onafterprint = function() {
-                window.history.back();
+                setTimeout(function() {
+                    window.history.back();
+                }, 500); // Optional delay to ensure print dialog has closed
             };
         };
     </script>
