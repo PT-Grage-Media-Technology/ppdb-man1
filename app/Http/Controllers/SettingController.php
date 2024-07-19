@@ -64,9 +64,11 @@ class SettingController extends Controller
         $setting->tahun_ajaran = $request->input('tahun_ajaran');
         $setting->is_pengumuman = $request->input('is_pengumuman');
         $setting->tgl_pengumuman = $request->input('tgl_pengumuman');
-        $setting->jadwal_ppdb = $request->input('jadwal_ppdb');
+        $setting->link_grup_wa = $request->input('link_grup_wa');
         $setting->tgl_pendaftaran_mulai = $request->input('tgl_pendaftaran_mulai');
         $setting->tgl_pendaftaran_selesai = $request->input('tgl_pendaftaran_selesai');
+        $setting->tgl_jadwal_tes_mulai = $request->input('tgl_jadwal_tes_mulai');
+        $setting->tgl_jadwal_tes_selesai = $request->input('tgl_jadwal_tes_selesai');
         $setting->tgl_daftar_ulang_mulai = $request->input('tgl_daftar_ulang_mulai');
         $setting->tgl_daftar_ulang_selesai = $request->input('tgl_daftar_ulang_selesai');
         $setting->nama_sekolah = $request->input('nama_sekolah');

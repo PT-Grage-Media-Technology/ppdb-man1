@@ -116,6 +116,7 @@
         <p>
             Demikian pengumuman ini kami sampaikan untuk ditindaklanjuti sebagaimana mestinya.
         </p>
+        <p>Tanggal Daftar Ulang : {{ $tgl_daftar_ulang_mulai }} s.d, {{ $tgl_daftar_ulang_selesai }}</p>
     </div>
 
     {{-- TANDA TANGAN --}}

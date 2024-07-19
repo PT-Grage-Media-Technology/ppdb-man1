@@ -43,8 +43,8 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="example-text-input" class="form-control-label">Jadwal PPDB</label>
-                                    <input class="form-control" type="text" name="jadwal_ppdb" value="<?php echo htmlspecialchars($setting->jadwal_ppdb); ?>" placeholder="e.g. Gelombang 3">
+                                    <label for="example-text-input" class="form-control-label">Link Group WA</label>
+                                    <input class="form-control" type="text" name="link_grup_wa" value="<?php echo htmlspecialchars($setting->link_grup_wa); ?>" placeholder="e.g. https://chat.whatsapp.com/G0h6s8S5nXZ">
                                 </div>
                             </div>
 
@@ -66,6 +66,27 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
+                                    <label for="example-text-input" class="form-control-label">Tanggal Jadwal Tes Mulai</label>
+                                    <input class="form-control" type="date" name="tgl_jadwal_tes_mulai" value="<?php echo htmlspecialchars($setting->tgl_jadwal_tes_mulai); ?>">
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="example-text-input" class="form-control-label">Tanggal Jadwal Tes Selesai</label>
+                                    <input class="form-control" type="date" name="tgl_jadwal_tes_selesai" value="<?php echo htmlspecialchars($setting->tgl_jadwal_tes_selesai); ?>">
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="example-text-input" class="form-control-label">Nama Sekolah</label>
+                                    <input class="form-control" type="text" name="nama_sekolah" value="<?php echo htmlspecialchars($setting->nama_sekolah); ?>" placeholder="">
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
                                     <label for="example-text-input" class="form-control-label">Tanggal Daftar Ulang Mulai</label>
                                     <input class="form-control" type="date" name="tgl_daftar_ulang_mulai" value="<?php echo htmlspecialchars($setting->tgl_daftar_ulang_mulai); ?>">
                                 </div>
@@ -77,13 +98,6 @@
                                     <input class="form-control" type="date" name="tgl_daftar_ulang_selesai" value="<?php echo htmlspecialchars($setting->tgl_daftar_ulang_selesai); ?>">
                                 </div>
                             </div>
-
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="example-text-input" class="form-control-label">Nama Sekolah</label>
-                                    <input class="form-control" type="text" name="nama_sekolah" value="<?php echo htmlspecialchars($setting->nama_sekolah); ?>" placeholder="">
-                                </div>
-                            </div>
                         </div>
 
                         <div class="row">
@@ -93,7 +107,7 @@
                                 <div>
                                     <img alt="belum ada foto!" class="mb-3" id="currentImage"
                                     style="width: 80px; height: 100px; border-radius: 10px; object-fit: cover; margin-left: 100px;"
-                                    src="{{ asset('settings/' . $setting->ttd_ketua_ppdb) }}">
+                                    src="{{ asset('core/public/settings/' . $setting->ttd_ketua_ppdb) }}">
                                     {{-- priview real time --}}
                                     <img id="newImage" src="#" alt="Preview"
                                         style="display: none; width: 100px; height: 150px; border-radius: 10px; object-fit: cover; margin-left: 100px; ">
@@ -111,7 +125,7 @@
                                 <div>
                                     <img alt="belum ada foto!" class="mb-3" id="currentImageLogo"
                                     style="width: 80px; height: 100px; border-radius: 10px; object-fit: cover; margin-left: 100px;"
-                                    src="{{ asset('settings/' . $setting->logo_sekolah) }}">
+                                    src="{{ asset('core/public/settings/' . $setting->logo_sekolah) }}">
                                     {{-- priview real time --}}
                                     <img id="newImageLogo" src="#" alt="Preview"
                                         style="display: none; width: 100px; height: 150px; border-radius: 10px; object-fit: cover; margin-left: 100px; ">

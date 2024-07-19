@@ -408,25 +408,33 @@
                         <div class="col-md-12">
                             <div class="card bg-primary">
                                 <div class="card-body">
-                                    <p class="text-white text-start text-sm mb-0">Jadwal PPDB {{ $setting->jadwal_ppdb }}</p>
+                                    <p class="text-white text-start text-sm mb-0">Jadwal PPDB</p>
+
                                     <p class="text-white text-start text-sm mb-0">
                                         Pendaftaran :
                                         {{ \Carbon\Carbon::parse($setting->tgl_pendaftaran_mulai)->translatedFormat('d F Y') }}
                                         s.d.
                                         {{ \Carbon\Carbon::parse($setting->tgl_pendaftaran_selesai)->translatedFormat('d F Y') }}
-                                        2024 <br> Pengumuman : {{ \Carbon\Carbon::parse($setting->tgl_pengumuman)->translatedFormat('d F Y') }}
+
                                     </p>
                                     <p class="text-white text-start text-sm mb-0">
-                                        Daftar Ulang :
-                                        {{ \Carbon\Carbon::parse($setting->tgl_daftar_ulang_mulai)->translatedFormat('d F Y') }}
+                                        Jadwal Tes :
+                                        {{ \Carbon\Carbon::parse($setting->tgl_jadwal_tes_mulai)->translatedFormat('d F Y') }}
                                         s.d.
-                                        {{ \Carbon\Carbon::parse($setting->tgl_daftar_ulang_selesai)->translatedFormat('d F Y') }}
-                                        2024
+                                        {{ \Carbon\Carbon::parse($setting->tgl_jadwal_tes_selesai)->translatedFormat('d F Y') }}
+
                                     </p>
+
+                                    <p class="text-white text-start text-sm mb-0">Pengumuman : {{ \Carbon\Carbon::parse($setting->tgl_pengumuman)->translatedFormat('d F Y') }}</p>
+                                    <a href="{{ $setting->link_grup_wa }}">
+                                        <p class="badge badge-sm bg-white text-dark"
+                                                style="cursor: pointer;">Gabung Grup WhatsApp PPDB</p>
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     </div>
+
 
                     <div class="row mt-1">
                         <div class="col-md-12">
