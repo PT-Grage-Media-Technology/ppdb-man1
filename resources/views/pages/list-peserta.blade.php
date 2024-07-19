@@ -10,6 +10,10 @@
                 </div>
                 <div class="card-body px-0 pt-0 pb-2">
                     <div class="table-responsive p-0">
+                        <div class="container mt-5">
+                            <h2>Export Users to Excel</h2>
+                            <a href="{{ url('export-users') }}" class="btn btn-primary">Export to Excel</a>
+                        </div>
                         <table class="table align-items-center mb-0 data-table">
                             <thead>
                                 <tr>

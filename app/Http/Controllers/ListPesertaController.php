@@ -11,6 +11,8 @@ use Yajra\DataTables\Facades\DataTables;
 use PDF;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
+use App\Exports\UsersExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ListPesertaController extends Controller
 {
@@ -138,6 +140,12 @@ public function savePDF($user, $formulir)
 
         return false;
     }
+}
+
+
+public function export()
+{
+    return Excel::download(new UsersExport, 'users.xlsx');
 }
 
 
