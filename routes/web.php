@@ -38,7 +38,8 @@ Route::get('setting', [SettingController::class, 'index'])->name('setting')->mid
 Route::post('/settings/update', [SettingController::class, 'update'])->name('settings.update')->middleware('auth','role:admin');
 Route::get('/print-form', [FormulirController::class, 'printForm'])->name('print.form')->middleware('auth','role:peserta|admin');
 
-
+// excel
+Route::get('export-users', [ListPesertaController::class, 'export']);
 
 // pdf
 Route::get('save-pdf', [ListPesertaController::class, 'savePDF'])->name('pages.pdfPenerimaan');
