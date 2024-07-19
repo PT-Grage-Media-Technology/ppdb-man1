@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
@@ -19,24 +20,30 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
-        $request->validate(
-            [
-                'nisn' => 'required|max:10|min:10',
-                'password' => 'required',
-                'nama_peserta' => 'required',
-                'no_hp' => 'required',
-                'asal_sekolah' => 'required',
-            ],
-            [
-                'nisn.required' => 'NISN harus diisi',
-                'nisn.max' => 'NISN maksimal 10 karakter',
-                'nisn.min' => 'NISN minimal 10 karakter',
-                'password.required' => 'Password harus diisi',
-                'no_hp.required' => 'Nomor Handphone harus diisi',
-                'nama_peserta.required' => 'Nama harus diisi',
-                'asal_sekolah.required' => 'Asal Sekolah harus diisi',
-            ]
-        );
+        // Validasi input
+        $validator = Validator::make($request->all(), [
+            'nisn' => 'required|max:10|min:10',
+            'password' => 'required',
+            'nama_peserta' => 'required',
+            'no_hp' => 'required',
+            'asal_sekolah' => 'required',
+        ], [
+            'nisn.required' => 'NISN harus diisi',
+            'nisn.max' => 'NISN terdiri dari 10 angka',
+            'nisn.min' => 'NISN terdiri dari 10 angka',
+            'password.required' => 'Password harus diisi',
+            'no_hp.required' => 'Nomor Handphone harus diisi',
+            'nama_peserta.required' => 'Nama harus diisi',
+            'asal_sekolah.required' => 'Asal Sekolah harus diisi',
+        ]);
+
+        if ($validator->fails()) {
+            // Jika validasi gagal, kirim error ke session
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput()
+                ->with('error', 'There were validation errors.');
+        }
 
         // Simpan kata sandi asli
         $originalPassword = $request->password;
@@ -56,6 +63,7 @@ class RegisterController extends Controller
 
         // Menambahkan role peserta
         $register->assignRole('peserta');
+
         // Membuat formulir baru
         Formulir::create([
             'kode_pendaftaran' => $kodePendaftaran,

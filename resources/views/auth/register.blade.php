@@ -3,15 +3,27 @@
 @include('sweetalert::alert')
     <div class="row mt-lg-n10 mt-md-n11 mt-n10 justify-content-center">
         <div class="col-xl-4 col-lg-5 col-md-7 mx-auto">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li class="text-white">{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
             <div class="card z-index-0">
                 <div class="card-header text-center pt-4">
                     <h5>Register</h5>
                 </div>
-                @if ($message = Session::get('error'))
+
+            {{-- @if ($message = Session::get('error'))
                 <div class="alert alert-danger" role="alert">
                     {{ $message }}
                 </div>
-                @endif
+            @endif --}}
+
 
                 <div class="card-body">
                     <form class="form" method="post" action="{{ route('register-post') }}">

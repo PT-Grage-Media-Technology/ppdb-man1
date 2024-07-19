@@ -16,7 +16,11 @@ class ListPesertaController extends Controller
 {
     public function index(Request $request)
     {
-        $peserta = Formulir::all(); // Ambil semua data Formulir
+         // Mengambil data formulir yang user_id-nya memiliki role 'peserta'
+    $peserta = Formulir::whereHas('user', function ($query) {
+        $query->role('peserta');
+    })->get();
+// Ambil semua data Formulir
 
         if ($request->ajax()) {
             return DataTables::of($peserta)
