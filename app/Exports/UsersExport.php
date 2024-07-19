@@ -10,7 +10,8 @@ use Maatwebsite\Excel\Concerns\WithColumnFormatting;
 use Maatwebsite\Excel\Concerns\WithStyles;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
-class NidiExport implements FromCollection, WithHeadings, WithEvents, WithColumnFormatting, WithStyles
+class UsersExport implements FromCollection
+
 {
     /**
     * @return \Illuminate\Support\Collection

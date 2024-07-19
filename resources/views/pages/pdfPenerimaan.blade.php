@@ -8,28 +8,35 @@
         .label {
             font-weight: bold;
         }
+
         .container {
             border: 1px solid #000;
             padding: 10px;
             margin-bottom: 10px;
             width: 100%;
-            max-width: 600px; /* Sesuaikan lebar maksimum sesuai kebutuhan */
+            max-width: 600px;
+            /* Sesuaikan lebar maksimum sesuai kebutuhan */
         }
+
         .logo {
             vertical-align: top;
             padding-right: 10px;
         }
+
         .logo img {
             width: 100px;
             height: 100px;
         }
+
         .description {
             text-align: center;
             vertical-align: middle;
         }
+
         .description table {
             width: 100%;
         }
+
         .description .link-underline-primary {
             text-decoration: underline;
             color: blue;
@@ -77,7 +84,8 @@
     <div>
         <p>
             Berdasarkan Surat Keputusan Kepala {{ $nama_sekolah }}, nomor 1588/Ma.10.36/PS.01/06/2023, tanggal
-            {{ $tgl_pengumuman }}, tentang Hasil Seleksi Peserta PPDB {{ $nama_sekolah }} Tahun Pelajaran {{ $tahun_ajaran }}.
+            {{ $tgl_pengumuman }}, tentang Hasil Seleksi Peserta PPDB {{ $nama_sekolah }} Tahun Pelajaran
+            {{ $tahun_ajaran }}.
             Sehubungan
             dengan hal tersebut, kami menyatakan bahwa:
         </p>
@@ -106,17 +114,20 @@
 
     {{-- DITERIMA --}}
     <div style="margin-bottom: 20px">
-        <div style="text-align: center; border: 2px solid black; padding: 10px; width: 300px; margin: 0 auto; font-weight: bold;">
+        <div
+            style="text-align: center; border: 2px solid black; padding: 10px; width: 300px; margin: 0 auto; font-weight: bold;">
             DITERIMA
         </div>
     </div>
 
     {{-- PENUTUP --}}
+    <p>Tanggal Daftar Ulang : {{ \Carbon\Carbon::parse($tgl_daftar_ulang_mulai)->translatedFormat('d F Y') }}
+        s.d.
+        {{ \Carbon\Carbon::parse($tgl_daftar_ulang_selesai)->translatedFormat('d F Y') }}</p>
     <div>
         <p>
             Demikian pengumuman ini kami sampaikan untuk ditindaklanjuti sebagaimana mestinya.
         </p>
-        <p>Tanggal Daftar Ulang : {{ $tgl_daftar_ulang_mulai }} s.d, {{ $tgl_daftar_ulang_selesai }}</p>
     </div>
 
     {{-- TANDA TANGAN --}}
@@ -128,7 +139,8 @@
                         <div>Cirebon, {{ $tgl_pengumuman }}</div>
                         <div>KETUA PPDB,</div>
                         <div>
-                            <img src="{{ public_path('settings/' . $ttd_ketua_ppdb) }}" alt="" width="200px" height="100px">
+                            <img src="{{ public_path('settings/' . $ttd_ketua_ppdb) }}" alt="" width="200px"
+                                height="100px">
                         </div>
                         <div style="font-weight: bold;">Ketua PPDB</div>
                     </div>
