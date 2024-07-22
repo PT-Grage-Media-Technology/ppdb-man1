@@ -5,20 +5,18 @@ namespace App\Exports;
 use App\Models\User;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
-use Maatwebsite\Excel\Concerns\WithEvents;
-use Maatwebsite\Excel\Concerns\WithColumnFormatting;
-use Maatwebsite\Excel\Concerns\WithStyles;
-use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
-class UsersExport implements FromCollection
-
+class UsersExport implements FromCollection, WithHeadings
 {
     /**
     * @return \Illuminate\Support\Collection
     */
     public function collection()
     {
-        return User::all();
+        // Filter users by role 'peserta' and select specific columns
+        return User::whereHas('roles', function ($query) {
+            $query->where('name', 'peserta');
+        })->select('kode_pendaftaran', 'nama_peserta', 'nisn', 'no_hp', 'asal_sekolah')->get();
     }
 
     /**
@@ -27,11 +25,11 @@ class UsersExport implements FromCollection
     public function headings(): array
     {
         return [
-            'ID',
-            'Name',
-            'Email',
-            'Created At',
-            'Updated At'
+            'Kode Pendaftaran',
+            'Nama Peserta',
+            'NISN',
+            'No HP',
+            'Asal Sekolah',
         ];
     }
 }
