@@ -16,14 +16,20 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class ListPesertaController extends Controller
 {
-    public function index(Request $request)
+    public function index(Request $request, $status = null)
     {
-         // Mengambil data formulir yang user_id-nya memiliki role 'peserta'
-    $peserta = Formulir::whereHas('user', function ($query) {
-        $query->role('peserta');
-    })->get();
-// Ambil semua data Formulir
 
+    $query = Formulir::whereHas('user', function ($query) {
+        $query->role('peserta');
+    });
+
+    if ($status) {
+        $query->where('status', $status);
+    }
+
+    $peserta = $query->get();
+
+    // Ambil semua data Formulir
         if ($request->ajax()) {
             return DataTables::of($peserta)
                 ->addIndexColumn()
@@ -55,7 +61,7 @@ class ListPesertaController extends Controller
                 ->make(true);
         }
 
-        return view('pages.list-peserta', compact('peserta'));
+        return view('pages.list-peserta', compact('peserta', 'status'));
     }
 
 
@@ -149,9 +155,18 @@ public function savePDF($user, $formulir)
 }
 
 
-public function export()
+public function export($status = null)
 {
-    return Excel::download(new UsersExport, 'users.xlsx');
+    $tanggal = now()->format('Y');
+
+    // Construct the filename based on the status
+    $filename = "PPDB_{$tanggal}";
+    if ($status) {
+        $filename .= "_{$status}";
+    }
+    $filename .= '.xlsx';
+
+    return Excel::download(new UsersExport($status), $filename);
 }
 
 

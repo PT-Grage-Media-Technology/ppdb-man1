@@ -9,58 +9,68 @@ use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 
 class UsersExport implements FromCollection, WithHeadings, ShouldAutoSize
 {
+    protected $status;
+
+    public function __construct($status = null)
+    {
+        $this->status = $status;
+    }
+
     /**
     * @return \Illuminate\Support\Collection
     */
     public function collection()
     {
-        // Ambil data User yang memiliki peran 'peserta' dan data relasi Formulirs
-        $users = User::whereHas('roles', function ($query) {
+        // Filter users based on the status parameter
+        $usersQuery = User::whereHas('roles', function ($query) {
             $query->where('name', 'peserta');
-        })->with('formulirs')->get();
+        })->with('formulirs');
 
+        if ($this->status) {
+            $usersQuery->whereHas('formulirs', function ($query) {
+                $query->where('status', $this->status);
+            });
+        }
+
+        $users = $usersQuery->get();
 
         // Map data User dan formulirs ke dalam array
         $mappedUsers = $users->map(function ($user) {
-            $formulirs = $user->formulirs[0];
-            // dd($formulirs);
+            $formulirs = $user->formulirs->first(); // Use `first()` instead of `[0]`
             return [
-                'kode_pendaftaran' => $formulirs ? $formulirs->kode_pendaftaran : '',
-                'kelas_program' => $formulirs ? $formulirs->kelas_program : '',
-                'nama_sekolah_asal' => $formulirs ? $formulirs->nama_sekolah_asal : '',
-                'npsn_sekolah_asal' => $formulirs ? $formulirs->npsn_sekolah_asal : '',
-                'nama_lengkap' => $formulirs ? $formulirs->nama_lengkap : '',
-                'jenis_kelamin' => $formulirs ? $formulirs->jenis_kelamin : '',
-                'nik' => $formulirs ? $formulirs->nik : '',
-                'nisn' => $formulirs ? $formulirs->nisn : '',
-                'tempat_lahir' => $formulirs ? $formulirs->tempat_lahir : '',
-                'tanggal_lahir' => $formulirs ? $formulirs->tanggal_lahir : '',
-                'alamat_jalan' => $formulirs ? $formulirs->alamat_jalan : '',
-                'rt' => $formulirs ? $formulirs->rt : '',
-                'desa' => $formulirs ? $formulirs->desa : '',
-                'kecamatan' => $formulirs ? $formulirs->kecamatan : '',
-                'kabupaten' => $formulirs ? $formulirs->kabupaten : '',
-                'provinsi' => $formulirs ? $formulirs->provinsi : '',
-                'no_hp' => $formulirs ? $formulirs->no_hp : '',
-                'status_ayah' => $formulirs ? $formulirs->status_ayah : '',
-                'nik_ayah' => $formulirs ? $formulirs->nik_ayah : '',
-                'nama_ayah' => $formulirs ? $formulirs->nama_ayah : '',
-                'tanggal_lahir_ayah' => $formulirs ? $formulirs->tanggal_lahir_ayah : '',
-                'pekerjaan_ayah' => $formulirs ? $formulirs->pekerjaan_ayah : '',
-                'pendidikan_ayah' => $formulirs ? $formulirs->pendidikan_ayah : '',
-                'penghasilan_ayah' => $formulirs ? $formulirs->penghasilan_ayah : '',
-                'no_hp_ayah' => $formulirs ? $formulirs->no_hp_ayah : '',
-                'status_ibu' => $formulirs ? $formulirs->status_ibu : '',
-                'nik_ibu' => $formulirs ? $formulirs->nik_ibu : '',
-                'nama_ibu' => $formulirs ? $formulirs->nama_ibu : '',
-                'tanggal_lahir_ibu' => $formulirs ? $formulirs->tanggal_lahir_ibu : '',
-                'pekerjaan_ibu' => $formulirs ? $formulirs->pekerjaan_ibu : '',
-                'pendidikan_ibu' => $formulirs ? $formulirs->pendidikan_ibu : '',
-                'penghasilan_ibu' => $formulirs ? $formulirs->penghasilan_ibu : '',
-                'no_hp_ibu' => $formulirs ? $formulirs->no_hp_ibu : '',
-                'user_id' => $formulirs ? $formulirs->user_id : '',
-                'foto' => $formulirs ? $formulirs->foto : '',
-                'status' => $formulirs ? $formulirs->status : '',
+                'kode_pendaftaran' => $formulirs->kode_pendaftaran ?? '-',
+                'kelas_program' => $formulirs->kelas_program ?? '-',
+                'nama_sekolah_asal' => $formulirs->nama_sekolah_asal ?? '-',
+                'npsn_sekolah_asal' => $formulirs->npsn_sekolah_asal ?? '-',
+                'nama_lengkap' => $formulirs->nama_lengkap ?? '-',
+                'jenis_kelamin' => $formulirs->jenis_kelamin ?? '-',
+                'nik' => $formulirs->nik ?? '-',
+                'nisn' => $formulirs->nisn ?? '-',
+                'tempat_lahir' => $formulirs->tempat_lahir ?? '-',
+                'tanggal_lahir' => $formulirs->tanggal_lahir ?? '-',
+                'alamat_jalan' => $formulirs->alamat_jalan ?? '-',
+                'rt' => $formulirs->rt ?? '-',
+                'desa' => $formulirs->desa ?? '-',
+                'kecamatan' => $formulirs->kecamatan ?? '-',
+                'kabupaten' => $formulirs->kabupaten ?? '-',
+                'provinsi' => $formulirs->provinsi ?? '-',
+                'no_hp' => $formulirs->no_hp ?? '-',
+                'status_ayah' => $formulirs->status_ayah ?? '-',
+                'nik_ayah' => $formulirs->nik_ayah ?? '-',
+                'nama_ayah' => $formulirs->nama_ayah ?? '-',
+                'tanggal_lahir_ayah' => $formulirs->tanggal_lahir_ayah ?? '-',
+                'pekerjaan_ayah' => $formulirs->pekerjaan_ayah ?? '-',
+                'pendidikan_ayah' => $formulirs->pendidikan_ayah ?? '-',
+                'penghasilan_ayah' => $formulirs->penghasilan_ayah ?? '-',
+                'no_hp_ayah' => $formulirs->no_hp_ayah ?? '-',
+                'status_ibu' => $formulirs->status_ibu ?? '-',
+                'nik_ibu' => $formulirs->nik_ibu ?? '-',
+                'nama_ibu' => $formulirs->nama_ibu ?? '-',
+                'tanggal_lahir_ibu' => $formulirs->tanggal_lahir_ibu ?? '-',
+                'pekerjaan_ibu' => $formulirs->pekerjaan_ibu ?? '-',
+                'pendidikan_ibu' => $formulirs->pendidikan_ibu ?? '-',
+                'penghasilan_ibu' => $formulirs->penghasilan_ibu ?? '-',
+                'no_hp_ibu' => $formulirs->no_hp_ibu ?? '-',
             ];
         });
 
@@ -107,9 +117,6 @@ class UsersExport implements FromCollection, WithHeadings, ShouldAutoSize
             'Pendidikan Ibu',
             'Penghasilan Ibu',
             'No HP Ibu',
-            'User ID',
-            'Foto',
-            'Status',
         ];
     }
 }

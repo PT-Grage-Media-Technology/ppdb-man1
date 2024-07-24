@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Formulir;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 
@@ -10,8 +11,21 @@ class SettingController extends Controller
     public function index()
     {
         $setting = Setting::first();
+        $acceptedCount = Formulir::where('status', 'Diterima')
+            ->whereHas('user', function ($query) {
+                $query->role('peserta');
+            })->count();
 
-        return view('pages.setting', compact('setting'));
+        $rejectedCount = Formulir::where('status', 'Ditolak')
+            ->whereHas('user', function ($query) {
+                $query->role('peserta');
+            })->count();
+
+        $totalApplicants = Formulir::whereHas('user', function ($query) {
+            $query->role('peserta');
+        })->count();
+
+        return view('pages.setting', compact('setting', 'acceptedCount', 'rejectedCount', 'totalApplicants'));
     }
 
     public function update(Request $request)

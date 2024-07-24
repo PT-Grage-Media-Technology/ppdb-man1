@@ -11,8 +11,7 @@
                 <div class="card-body px-0 pt-0 pb-2">
                     <div class="table-responsive p-0">
                         <div class="container mt-5">
-                            <h2>Export Users to Excel</h2>
-                            <a href="{{ url('export-users') }}" class="btn btn-primary">Export to Excel</a>
+                            <a href="{{ url('export-users', ['status' => $status]) }}" class="btn btn-success">Export to Excel</a>
                         </div>
                         <table class="table align-items-center mb-0 data-table">
                             <thead>
@@ -69,50 +68,40 @@
                 @empty
                 <p>Tidak ada data peserta</p>
             @endforelse --}}
+
+                            <!-- Pass the status to the JavaScript code -->
                                 <script type="text/javascript">
                                     $(function() {
                                         var table = $('.data-table').DataTable({
                                             processing: true,
                                             serverSide: true,
-                                            ajax: "{{ route('list-peserta') }}",
+                                            ajax: {
+                                                url: "{{ route('list-peserta', ['status' => $status]) }}",
+                                            },
                                             columns: [
-                                                {
-                                                    data: 'kode_pendaftaran',
-                                                    name: 'kode_pendaftaran'
-                                                },
-                                                {
-                                                    data: 'nama_lengkap',
-                                                    name: 'nama_lengkap'
-                                                },
-                                                {
-                                                    data: 'nama_sekolah_asal',
-                                                    name: 'nama_sekolah_asal'
-                                                },
-                                                {
-                                                    data: 'jenis_kelamin',
-                                                    name: 'jenis_kelamin'
-
-                                                },
-                                                {
-                                                    data: 'nisn',
-                                                    name: 'nisn'
-                                                },
-                                                {
-                                                    data: 'kelengkapan_data',
-                                                    name: 'kelengkapan_data'
-                                                },
-
-                                                {
-                                                    data: 'action',
-                                                    name: 'action',
-                                                    orderable: false,
-                                                    searchable: false
-                                                },
-
+                                                { data: 'kode_pendaftaran', name: 'kode_pendaftaran' },
+                                                { data: 'nama_lengkap', name: 'nama_lengkap' },
+                                                { data: 'nama_sekolah_asal', name: 'nama_sekolah_asal' },
+                                                { data: 'jenis_kelamin', name: 'jenis_kelamin' },
+                                                { data: 'nisn', name: 'nisn' },
+                                                { data: 'kelengkapan_data', name: 'kelengkapan_data', orderable: false, searchable: false },
+                                                { data: 'action', name: 'action', orderable: false, searchable: false },
                                             ]
+                                        });
+
+                                        // Event handler for sidebar link click to change status
+                                        $('.sidebar-link').click(function(e) {
+                                            e.preventDefault();
+                                            status = $(this).data('status'); // Get the status from the clicked sidebar link
+                                            var url = new URL(window.location.href);
+                                            url.searchParams.set('status', status); // Update the URL with the new status
+                                            window.history.pushState({ path: url.href }, '', url.href); // Update the browser history
+                                            table.ajax.reload(); // Reload DataTables with new status parameter
                                         });
                                     });
                                 </script>
+
+
                             </tbody>
                         </table>
                     </div>

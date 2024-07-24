@@ -32,14 +32,14 @@ Route::get('formulir-pendaftaran', [FormulirController::class, 'index'])->name('
 Route::post('formulir-pendaftaran-post', [FormulirController::class, 'store'])->name('formulir-pendaftaran-post')->middleware('auth','role:peserta|admin');
 
 // data peserta didik baru
-Route::get('list-peserta', [ListPesertaController::class, 'index'])->name('list-peserta')->middleware('auth','role:admin');
+Route::get('list-peserta/{status?}', [ListPesertaController::class, 'index'])->name('list-peserta')->middleware('auth','role:admin');
 
 Route::get('setting', [SettingController::class, 'index'])->name('setting')->middleware('auth','role:admin');
 Route::post('/settings/update', [SettingController::class, 'update'])->name('settings.update')->middleware('auth','role:admin');
 Route::get('/print-form', [FormulirController::class, 'printForm'])->name('print.form')->middleware('auth','role:peserta|admin');
 
 // excel
-Route::get('export-users', [ListPesertaController::class, 'export']);
+Route::get('export-users/{status?}', [ListPesertaController::class, 'export']);
 
 // pdf
 Route::get('save-pdf', [ListPesertaController::class, 'savePDF'])->name('pages.pdfPenerimaan');
