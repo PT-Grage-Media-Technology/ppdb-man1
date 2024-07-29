@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\FormulirController;
+use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\ListPesertaController;
 use App\Http\Controllers\SettingController;
 use Illuminate\Support\Facades\Route;
@@ -33,6 +34,12 @@ Route::post('formulir-pendaftaran-post', [FormulirController::class, 'store'])->
 
 // data peserta didik baru
 Route::get('list-peserta/{status?}', [ListPesertaController::class, 'index'])->name('list-peserta')->middleware('auth','role:admin');
+
+// Jurusan
+Route::get('jurusan/', [JurusanController::class, 'index'])->name('jurusan')->middleware('auth','role:admin');
+Route::post('jurusan/tambah', [JurusanController::class, 'tambah'])->name('jurusan-tambah')->middleware('auth','role:admin');
+Route::post('jurusan/edit/{id}', [JurusanController::class, 'edit'])->name('jurusan-edit')->middleware('auth','role:admin');
+Route::post('jurusan/hapus/{id}', [JurusanController::class, 'hapus'])->name('jurusan-hapus')->middleware('auth','role:admin');
 
 Route::get('setting', [SettingController::class, 'index'])->name('setting')->middleware('auth','role:admin');
 Route::post('/settings/update', [SettingController::class, 'update'])->name('settings.update')->middleware('auth','role:admin');

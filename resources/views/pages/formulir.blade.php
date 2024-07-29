@@ -40,8 +40,15 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="example-text-input" class="form-control-label">Kelas/Program</label>
-                                    <input class="form-control" type="text" name="kelas_program"
-                                        value="{{ $formulir->kelas_program }}">
+                                    <select name="id_jurusan" id="jurusan" class="form-control" >
+                                        @if ($jurusan)
+                                        <option value="">{{ $formulir->jurusan->nama_jurusan ?? 'Pilih Jurusan'}}</option>
+                                     
+                                        @endif
+                                        @foreach ($jurusan as $data)
+                                            <option value="{{ $data->id }}">{{ $data->nama_jurusan }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-md-6">

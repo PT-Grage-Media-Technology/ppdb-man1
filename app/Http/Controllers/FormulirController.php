@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Formulir;
+use App\Models\Jurusan;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,6 +17,8 @@ class FormulirController extends Controller
     $user = Auth::user();
     $user_id = $user->id;
 
+    $jurusan = Jurusan::all();
+
     // Ambil data formulir terkait dengan pengguna
     $formulir = Formulir::where('user_id', $user->id)->first();
 
@@ -24,7 +27,9 @@ class FormulirController extends Controller
 
     // settung modal
     $setting = Setting::first();
-        return view('pages.formulir', compact('formulir', 'completionPercentage', 'setting', 'user_id'));
+
+    return view('pages.formulir', compact('formulir', 'completionPercentage', 'setting', 'user_id', 'jurusan'));
+
     }
 
     public function indexUser(Request $request, $user_id)
@@ -35,9 +40,11 @@ class FormulirController extends Controller
     // Hitung persentase kelengkapan data
     $completionPercentage = $formulir ? $formulir->getCompletionPercentage() : 0;
 
+    $jurusan = Jurusan::all();
+
     // settung modal
     $setting = Setting::first();
-        return view('pages.formulir', compact('formulir', 'completionPercentage', 'setting', 'user_id'));
+        return view('pages.formulir', compact('formulir', 'completionPercentage', 'setting', 'user_id', 'jurusan'));
     }
 
     public function store(Request $request)
@@ -90,7 +97,8 @@ class FormulirController extends Controller
         if (!$formulir) {
             abort(404);
         }
-        return view('pages.printForm', compact('formulir', 'setting'));
+        $jurusan = Jurusan::all();
+        return view('pages.printForm', compact('formulir', 'setting', 'jurusan'));
     }
 
 

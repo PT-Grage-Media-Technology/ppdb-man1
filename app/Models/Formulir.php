@@ -12,17 +12,23 @@ class Formulir extends Model
     protected $table = 'formulirs';
     public $timestamps = false;
     protected $fillable = [
-        'kode_pendaftaran', 'kelas_program', 'nama_sekolah_asal', 'npsn_sekolah_asal', 'nama_lengkap', 'jenis_kelamin',
+        'kode_pendaftaran', 'nama_sekolah_asal', 'npsn_sekolah_asal', 'nama_lengkap', 'jenis_kelamin',
         'nik', 'nisn', 'tempat_lahir', 'tanggal_lahir', 'alamat_jalan', 'rt', 'desa', 'kecamatan', 'kabupaten', 'provinsi',
         'no_hp', 'status_ayah', 'nik_ayah', 'nama_ayah', 'tanggal_lahir_ayah', 'pekerjaan_ayah', 'pendidikan_ayah', 'penghasilan_ayah',
         'no_hp_ayah', 'status_ibu', 'nik_ibu', 'nama_ibu', 'tanggal_lahir_ibu', 'pekerjaan_ibu', 'pendidikan_ibu', 'penghasilan_ibu',
-        'no_hp_ibu', 'user_id','foto','status',
+        'no_hp_ibu', 'user_id','foto','status','id_jurusan',
     ];
 
     public function user()
     {
         return $this->belongsTo(User::class);
     }
+
+    public function jurusan()
+    {
+        return $this->belongsTo(Jurusan::class, 'id_jurusan');
+    }
+
 // function untuk mengambil berapa persen kelengkapan data
     public function getCompletionPercentage()
     {

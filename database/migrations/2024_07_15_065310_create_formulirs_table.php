@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             // registrasi peserta didik
             $table->string('kode_pendaftaran')->nullable();
-            $table->string('kelas_program')->nullable();
+            $table->foreignId('id_jurusan')->nullable()->constrained('jurusan');
             $table->string('nama_sekolah_asal')->nullable();
             $table->string('npsn_sekolah_asal')->nullable();
             // biodata peserta didik

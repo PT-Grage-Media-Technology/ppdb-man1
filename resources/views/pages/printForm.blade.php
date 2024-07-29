@@ -50,7 +50,7 @@
                     </div>
                     <div class="col-7">
                         <div>: &nbsp;&nbsp; {{ $formulir->kode_pendaftaran }}</div>
-                        <div>: &nbsp;&nbsp; {{ $formulir->kelas_program }}</div>
+                        <div>: &nbsp;&nbsp; {{ $formulir->jurusan->nama_jurusan }}</div>
                         <div>: &nbsp;&nbsp; {{ $formulir->nama_sekolah_asal }}</div>
                         <div>: &nbsp;&nbsp; {{ $formulir->npsn_sekolah_asal }}</div>
                     </div>
